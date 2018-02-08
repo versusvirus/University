@@ -1,0 +1,163 @@
+/* Основные цвета */
+
+@header-clr: white;
+@borders-clr: #1D236D;
+@light-clr: #1D236D;
+html {
+    font-size: 10px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    cursor: default;
+}
+
+ul {
+    list-style: none;
+}
+
+.row{
+    margin: 0;
+}
+/*Стили заголовка*/
+
+.appHeader {
+    color: @light-clr;
+    background-color: @header-clr;
+    height: 10rem;
+    border-bottom: 0.8rem solid @borders-clr;
+    .logo {
+        &-header {
+            height: 9rem;
+            line-height: 9rem;
+            font-size: 4rem;
+            margin: 0;
+        }
+        &-image{
+			height: 8rem;
+			width: 8rem;
+            float: left;
+            margin-top: 1rem;
+		}
+    }
+    .menu {
+        height: 10rem;
+        display: table;
+        list-style: none;
+        float: right;
+        li {
+            display: table-cell;
+            padding: 1rem 3rem;
+            vertical-align: middle;
+            font-size: 2rem;
+            &:hover {
+                background-color: #345D9D;
+                opacity: 0.7;
+                border-bottom: grey;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+/*Стили контента*/
+
+.content {
+    background-color: #FDFCFC;
+    height: 80rem;
+    &-recepts {
+        padding-right: 0.4rem;
+        max-height: 80rem;
+        overflow: auto;	
+        &-item {
+            height: 7rem;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            img {
+                height: 6rem;
+                width: 6rem;
+                border-radius: 50%;
+                float: left;
+                margin-right: 1rem;
+            }
+            .recept-header {
+                font-size: 3rem;
+                font-weight: 500;
+            }
+            &:hover {
+                background: #84A2E1;
+                cursor: pointer;
+            }
+            &.selected {
+                border-right: 0.5rem solid @borders-clr;
+                background-color: #EFEFF5;
+                border-radius: 0;
+            }
+        }
+    }
+    .readytocook{
+        width: 100%;
+        height: 75rem;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        h4{
+            font-size: 5rem;
+        }
+        button{
+            width: 250px;
+            height: 75px;
+            font-size: 25px;
+        }
+    }
+    &-receptinfo{
+        display: none;
+    }
+}
+
+/* Стили профиля */
+
+.user-profile {
+    border-top: 0.8rem solid @borders-clr;
+    height: 11.5rem;
+    background-color: @header-clr;
+    .profile {
+        padding: 1rem;
+        .profile-img {
+            height: 8rem;
+            width: 8rem;
+            border-radius: 50%;
+            float: left;
+            margin-right: 1rem;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            &-name {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+/* Всплывающие окна */
+
+.popup {	
+	display: none;
+    position: absolute;
+    top:0;
+    l: 0;
+    z-index: 99;
+    width: 100%;
+	height: 100%;
+	background-color: grey;
+}
