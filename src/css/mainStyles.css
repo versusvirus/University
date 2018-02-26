@@ -1,0 +1,119 @@
+/*Общие стили для страницы*/
+html {
+    font-family: "Century Gothic";
+}
+
+body {
+    background-color: #f6f5f3;
+}
+* {
+    box-sizing: border-box;
+    cursor: default;
+}
+
+a:hover, input:hover, .standart-button:hover {
+    cursor: pointer;
+}
+
+input:focus {
+    cursor: text;
+}
+
+.container {
+    width: 1440px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+.standart-button {
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.standart-button:hover,
+.header-Menu__item:hover {
+    transition-duration: 0.3s;
+    color: white;
+    background-color: #ff7c19;
+    opacity: 0.7;
+}
+
+
+
+/*--------------------------------------------------------------*/
+
+/*Стили для всплывающего окна*/
+
+.popup {
+    width: 75%;
+    height: 100%;
+    opacity: .7;
+    position: absolute;
+    top: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-window {
+    background-color: #fff;
+    border: 2px solid gray;
+    padding: 16px;
+    position: relative;
+}
+
+.popup-window__caption {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.popup-window__info {
+    padding: 0 8px;
+}
+
+.popup-window__clsBtn {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    opacity: .5;
+}
+
+.popup-window__clsBtn:hover {
+    cursor: pointer;
+    transition-duration: .3s;
+    opacity: 1;
+}
+
+/*--------------------------------------------------------------*/
+
+/*Стили для заголовка и меню*/
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #cccccc;
+}
+
+.header-caption {
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 12px;
+}
+
+.header-Menu {
+    display: flex;
+}
+
+.header-Menu__item {
+    padding: 16px;
+}

@@ -4,20 +4,55 @@
     <meta charset="UTF-8">
     <title>Приложение</title>
     <link rel="stylesheet" href="../src/css/mainStyles.css">
+    <link rel="stylesheet" href="../src/css/registryStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
 </head>
 <body>
 <div class="container">
     <div class="header">
-        123
+        <div class="header-caption">Ежедневная готовка</div>
+        <div class="header-Menu">
+            <div class="header-Menu__item" data-id="0">О программе</div>
+            <div class="header-Menu__item" data-id="1">Справка</div>
+            <div class="header-Menu__item" data-id="2">Авторство</div>
+        </div>
     </div>
     <div class="content">
-        123
+        <div class="content-header">Не умеете готовить? Это больше не проблема, так как в нашем приложении вы:</div>
+        <div class="content-info">
+            <div class="content-info__item">Научитесь готовить</div>
+            <div class="content-info__item">Узнать много новых рецептов</div>
+            <div class="content-info__item">Прокачать свой уровень в готовке</div>
+        </div>
+        <div class="content-registration">
+            <div class="content-registration__caption">Заинтересовало? Регистрируйся по кнопке ниже!</div>
+            <div class="standart-button registrate-button">Зарегистрироваться</div>
+        </div>
     </div>
-    <div class="footer">
-        123
+    <div class="popup">
+        <div class="popup-window">
+            <div class="popup-window__clsBtn">x</div>
+            <div class="popup-window__caption"></div>
+            <div class="popup-window__info"></div>
+        </div>
+    </div>
+    <div class="popup registration-popup">
+        <div class="popup-window registration-popup-window">
+            <div class="popup-window__caption registration-popup-window-caption">Регистрация</div>
+            <div class="registration-popup-inputString"><span
+                    class="registration-popup-inputString__caption">Имя пользователя:</span><input type="text"
+                                                                                   class="registration-popup-input">
+            </div>
+            <div class="registration-popup-inputString"><span
+                    class="registration-popup-inputString__caption">Пароль:</span><input type="text"
+                                                                                  class="registration-popup-input">
+            </div>
+            <div class="standart-button registration-popup-button">Принять</div>
+        </div>
     </div>
 </div>
+
+<script src="../src/js/popupInfo.js"></script>
 <script src="../src/js/validates.js"></script>
 <script src="../src/js/handlers.js"></script>
 </body>

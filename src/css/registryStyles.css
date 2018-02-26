@@ -1,0 +1,13 @@
+.registration-popup-inputString {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.registration-popup-inputString__caption {
+    margin-right: 8px;
+}
+
+.registration-popup-button {
+    margin: 0 auto;
+}
