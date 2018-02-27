@@ -1,13 +1,60 @@
-.registration-popup-inputString {
-    display: flex;
-    justify-content: space-between;
+/*Стили для окошка регистрации и входа*/
+
+.signIn-content {
+    padding-top: 20px;
+}
+
+.signIn-content-window {
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding: 12px 8px;
+    min-width: 400px;
+}
+
+.signIn-content-window__caption {
+    font-weight: bold;
+    font-size: 17px;
+    text-align: center;
+}
+
+.registration-popup-window {
+    min-width: 400px;
+}
+
+.registration-popup-inputString,
+.signIn-content-window-inputItem {
+    position: relative;
     margin-bottom: 8px;
 }
 
-.registration-popup-inputString__caption {
-    margin-right: 8px;
+.registration-popup-inputString__caption,
+.signIn-content-window-inputItem__caption {
+    position: absolute;
+    font-size: 12px;
+    background: white;
+    left: 10%;
+    top: -25%;
+    padding: 0 3px;
+}
+
+.registration-popup-input,
+.signIn-content-window-input {
+    width: 100%;
+    padding: 6px 3px;
+    font-size: 14px;
 }
 
 .registration-popup-button {
     margin: 0 auto;
 }
+
+/*--------------------------------------------------------------*/
+
+/*Дополнительные стили для контента*/
+
+.content-registration__caption {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/*--------------------------------------------------------------*/

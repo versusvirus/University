@@ -5,12 +5,16 @@
     <title>Приложение</title>
     <link rel="stylesheet" href="../src/css/mainStyles.css">
     <link rel="stylesheet" href="../src/css/registryStyles.css">
+    <link rel="stylesheet" href="../src/css/validationStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <div class="header-caption">Ежедневная готовка</div>
+        <div class="header-caption-logo">
+            <div class="header-caption">Ежедневная готовка</div>
+            <img src="../src/images/logo.png" alt="" class="header-logo">
+        </div>
         <div class="header-Menu">
             <div class="header-Menu__item" data-id="0">О программе</div>
             <div class="header-Menu__item" data-id="1">Справка</div>
@@ -18,15 +22,49 @@
         </div>
     </div>
     <div class="content">
-        <div class="content-header">Не умеете готовить? Это больше не проблема, так как в нашем приложении вы:</div>
-        <div class="content-info">
-            <div class="content-info__item">Научитесь готовить</div>
-            <div class="content-info__item">Узнать много новых рецептов</div>
-            <div class="content-info__item">Прокачать свой уровень в готовке</div>
+        <div class="main-content">
+            <div class="content-header">Не умеете готовить? Это больше не проблема, так как в нашем приложении вы:</div>
+            <div class="content-info">
+                <div class="content-info-item">
+                    <div class="content-info-item__caption">Научитесь готовить</div>
+                    <img src="../src/images/startCook.jpg" alt="" class="content-info-item__image">
+                    <div class="content-info-item__description">
+                        Это приложение позволит вам научиться готовить абсолютно любые блюда!
+                    </div>
+                </div>
+                <div class="content-info-item">
+                    <div class="content-info-item__caption">Выучите много новых рецептов</div>
+                    <img src="../src/images/manyRecepts.jpg" alt="" class="content-info-item__image">
+                    <div class="content-info-item__description">
+                        Большая база рецептов от азов до профессиональной кулинарии!
+                    </div>
+                </div>
+                <div class="content-info-item">
+                    <div class="content-info-item__caption">Повысите свои навыки готовки</div>
+                    <img src="../src/images/skillCook.jpg" alt="" class="content-info-item__image">
+                    <div class="content-info-item__description">
+                        Если вы уже умеете готовить, то всегда сможете научиться здесь чему то новому!
+                    </div>
+                </div>
+            </div>
+            <div class="content-registration">
+                <div class="content-registration__caption">Заинтересовало? Регистрируйся по кнопке ниже!</div>
+                <div class="standart-button registrate-button">Зарегистрироваться</div>
+            </div>
         </div>
-        <div class="content-registration">
-            <div class="content-registration__caption">Заинтересовало? Регистрируйся по кнопке ниже!</div>
-            <div class="standart-button registrate-button">Зарегистрироваться</div>
+        <div class="signIn-content">
+            <div class="signIn-content-window">
+                <div class="signIn-content-window__caption">Вход в систему</div>
+                <div class="signIn-content-window-inputItem"><span
+                        class="signIn-content-window-inputItem__caption">Имя пользователя</span><input type="text"
+                                                                                        class="signIn-content-window-input">
+                </div>
+                <div class="signIn-content-window-inputItem"><span
+                        class="signIn-content-window-inputItem__caption">Пароль</span><input type="password"
+                                                                                       class="signIn-content-window-input">
+                </div>
+                <a href="app.html" class="standart-button signInButton">Войти в систему</a>
+            </div>
         </div>
     </div>
     <div class="popup">
@@ -41,11 +79,11 @@
             <div class="popup-window__caption registration-popup-window-caption">Регистрация</div>
             <div class="registration-popup-inputString"><span
                     class="registration-popup-inputString__caption">Имя пользователя:</span><input type="text"
-                                                                                   class="registration-popup-input">
+                                                                                                   class="registration-popup-input">
             </div>
             <div class="registration-popup-inputString"><span
-                    class="registration-popup-inputString__caption">Пароль:</span><input type="text"
-                                                                                  class="registration-popup-input">
+                    class="registration-popup-inputString__caption">Пароль:</span><input type="password"
+                                                                                         class="registration-popup-input validation-error">
             </div>
             <div class="standart-button registration-popup-button">Принять</div>
         </div>
