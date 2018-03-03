@@ -5,3 +5,14 @@
 .validation-error:focus {
     background-color: rgba(255, 0, 0, .1);
 }
+
+.validateWindow {
+    padding: 12px;
+    font-size: 16px;
+    border: 3px solid red;
+    display: none;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: white;
+}

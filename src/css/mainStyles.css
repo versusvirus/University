@@ -32,6 +32,7 @@ input:focus {
     margin: 0 auto;
     min-height: 100vh;
     background-color: #fff;
+    position: relative;
 }
 
 .standart-button {
@@ -68,13 +69,14 @@ input:focus {
 /*Стили для всплывающего окна*/
 
 .popup {
-    width: 75%;
+    width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     display: none;
     align-items: center;
     justify-content: center;
+    background-color: rgba(0,0,0, 0.1);
 }
 
 .popup-window {
@@ -82,6 +84,7 @@ input:focus {
     border: 2px solid gray;
     padding: 16px;
     position: relative;
+    z-index: 1;
     text-align: center;
 }
 
@@ -93,21 +96,6 @@ input:focus {
 
 .popup-window__info {
     padding: 0 8px;
-}
-
-.popup-window__clsBtn {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    opacity: .5;
-}
-
-.popup-window__clsBtn:hover {
-    cursor: pointer;
-    transition-duration: .3s;
-    opacity: 1;
 }
 
 /*--------------------------------------------------------------*/
