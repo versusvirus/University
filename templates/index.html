@@ -81,19 +81,20 @@
             <div class="signIn-content-window">
                 <div class="signIn-content-window__caption">Вход в систему</div>
                 <div class="signIn-content-window-inputItem"><span
-                        class="signIn-content-window-inputItem__caption">Имя пользователя</span><input type="text"
-                                                                                                       id="inputedSign"
-                                                                                                       class="signIn-content-window-input">
+                        class="signIn-content-window-inputItem__caption">Имя пользователя</span>
+                    <input type="text" class="signIn-content-window-input">
                 </div>
                 <div class="signIn-content-window-inputItem"><span
-                        class="signIn-content-window-inputItem__caption">Пароль</span><input type="password"
-                                                                                             class="signIn-content-window-input">
+                        class="signIn-content-window-inputItem__caption">Пароль</span>
+                    <input type="password" class="signIn-content-window-input" >
                 </div>
-                <a href="app.html" class="standart-button signInButton">Войти в систему</a>
+                <button href="app.html" class="standart-button signInButton">Войти в систему</button>
             </div>
         </div>
     </div>
-    <div class="validateWindow">фывфыв</div>
+    <div class="validate-place">
+
+    </div>
 </div>
 <div class="popup" data-component="Popup" data-name="MainPopup">
     <div class="popup-window">
@@ -102,23 +103,28 @@
     </div>
 </div>
 <div class="popup registration-popup" data-component="Popup" data-name="RegistratePopup">
-    <div class="popup-window registration-popup-window">
+    <div class="popup-window registration-popup-window" data-component="Form" data-name="RegistrationForm">
         <div class="popup-window__caption registration-popup-window-caption">Регистрация</div>
         <div class="registration-popup-inputString"><span
-                class="registration-popup-inputString__caption">Имя пользователя:</span><input type="text"
+                class="registration-popup-inputString__caption">Никнейм:</span><input type="text" data-component="Input" data-name="NicknameReg" data-error="Некорректный никнейм"
                                                                                                class="registration-popup-input">
         </div>
         <div class="registration-popup-inputString"><span
                 class="registration-popup-inputString__caption">Пароль:</span><input type="password"
-                                                                                     class="registration-popup-input">
+                                                                                     class="registration-popup-input" data-component="Input" data-error="Некорректный пароль" data-name="PassReg">
         </div>
-        <div class="standart-button registration-popup-button">Принять</div>
+        <div class="registration-popup-inputString"><span
+                class="registration-popup-inputString__caption">Имя пользователя:</span><input type="text"
+                                                                                     class="registration-popup-input" data-component="Input" data-error="Некорректное имя пользователя" data-name="UsernameReg">
+        </div>
+        <div class="standart-button registration-popup-button submit-button" data-component data-name="submit-reg-button">Принять</div>
     </div>
 </div>
 
+
+<script src="../src/js/validates.js"></script>
 <script src="../src/js/components.js"></script>
 <script src="../src/js/popupsMixin.js"></script>
-<script src="../src/js/validates.js"></script>
 <script src="../src/js/mainHandlers.js"></script>
 <script src="../src/js/registrationHandlers.js"></script>
 </body>

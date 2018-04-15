@@ -1,30 +1,40 @@
-var error = {
-    markup: document.querySelector('.validateWindow'),
-    show: function (message) {
-        this.markup.innerHTML = message;
-        this.markup.style.display = 'inline-block';
-    },
-    hide: function () {
-      this.markup.style.display = 'none';
-    }
-};
+var errorsPlace = document.querySelector('.validate-place');
 
-class validateInput {
-    constructor(inputMarkup, regExp) {
+class Validator {
+    constructor(inputMarkup, regExp, error) {
         this.input = inputMarkup;
         this.regExp = new RegExp(regExp);
         this.errorMessage = error;
+        this.errorBlock = document.createElement('div');
+        this.errorBlock.classList.add('validateWindow');
+        this.errorBlock.innerHTML = error;
+        errorsPlace.appendChild(this.errorBlock);
+        this.input.addEventListener('focus', function () {
+            debugger;
+        })
     }
 
     validate() {
         let inputedText = this.input.value;
-        if (inputedText.match(this.regExp)) {
+        if (inputedText.match(this.regExp) || !inputedText.length) {
             this.input.classList.add('validation-error');
-            this.errorMessage.show('Некорректно заполнены обязательные поля!');
+            this.input.removeAttribute('validated');
+            this.showMessage();
+            return false;
         }
         else {
             this.input.classList.remove('validation-error');
-            this.errorMessage.hide();
+            this.input.setAttribute('validated', true);
+            this.hideMessage();
+            return true;
         }
+    }
+
+    showMessage() {
+        this.errorBlock.style.display = 'block';
+    }
+
+    hideMessage() {
+        this.errorBlock.style.display = 'none';
     }
 }

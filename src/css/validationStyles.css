@@ -6,13 +6,19 @@
     background-color: rgba(255, 0, 0, .1);
 }
 
+.validate-place {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+}
 .validateWindow {
     padding: 12px;
     font-size: 16px;
     border: 3px solid red;
     display: none;
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
     background-color: white;
+    margin-bottom: 12px;
+    z-index: 100;
 }
