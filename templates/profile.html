@@ -16,12 +16,12 @@
     <div class="header">
         <div class="header-caption-logo">
             <div class="header-caption">Ежедневная готовка</div>
-            <img src="../src/images/logo.png" alt="" class="header-logo">
+            <a href="index.html"><img src="../src/images/logo.png" alt="" class="header-logo"></a>
         </div>
         <div class="header-Menu">
-            <div class="header-Menu__item" data-id="0">О программе</div>
-            <div class="header-Menu__item" data-id="1">Справка</div>
-            <div class="header-Menu__item" data-id="2">Авторство</div>
+            <div class="header-Menu__item" data-id="0" data-component="MenuButton" data-name="menuStandartAbout" data-popup-name="MainPopup">О программе</div>
+            <div class="header-Menu__item" data-id="1" data-component="MenuButton" data-name="menuStandartHelp" data-popup-name="MainPopup">Справка</div>
+            <div class="header-Menu__item" data-id="2" data-component="MenuButton" data-name="menuStandartAuthor" data-popup-name="MainPopup">Авторство</div>
         </div>
         <div class="header-Menu-burger">
             <div class="burger-menu-slice"></div>
@@ -31,9 +31,9 @@
         </div>
     </div>
     <div class="burger-menu">
-        <div class="burger-menu-item" data-id="0">О программе</div>
-        <div class="burger-menu-item" data-id="1">Справка</div>
-        <div class="burger-menu-item" data-id="2">Авторство</div>
+        <div class="burger-menu-item" data-id="0" data-component="MenuButton" data-name="menuBurgerAbout" data-popup-name="MainPopup">О программе</div>
+        <div class="burger-menu-item" data-id="1" data-component="MenuButton" data-name="menuBurgerHelp" data-popup-name="MainPopup">Справка</div>
+        <div class="burger-menu-item" data-id="2" data-component="MenuButton" data-name="menuBurgerAuthor" data-popup-name="MainPopup">Авторство</div>
     </div>
     <div class="content">
         <div class="profile-card"><img src="../src/images/startCook.jpg" alt="" class="profile-card-photo">
@@ -56,59 +56,15 @@
         <div class="profile-recipes">
             <div class="profile-recipes-header">Выученные рецепты</div>
             <div class="profile-recipes-content">
-                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
-                                                               class="profile-recipes-recipe-block-img">
-                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
-                </div>
-                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
-                                                               class="profile-recipes-recipe-block-img">
-                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
-                </div>
-                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
-                                                               class="profile-recipes-recipe-block-img">
-                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
-                </div>
-                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
-                                                               class="profile-recipes-recipe-block-img">
-                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
-                </div>
-                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
-                                                               class="profile-recipes-recipe-block-img">
-                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
-                </div>
-                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
-                                                               class="profile-recipes-recipe-block-img">
-                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
-                </div>
-                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
-                                                               class="profile-recipes-recipe-block-img">
-                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
-                </div>
-                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
-                                                               class="profile-recipes-recipe-block-img">
-                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
-                </div>
             </div>
         </div>
         <div class="profile-achievements">
             <div class="profile-achievements-header">Достижения</div>
             <div class="profile-achievements-content">
-                <div class="profile-achievements-block"><img src="../src/images/startCook.jpg" alt=""
-                                                             class="profile-achievements-block-img">
-                    <div class="profile-achievements-block-caption">Достижение</div>
-                </div>
-                <div class="profile-achievements-block"><img src="../src/images/startCook.jpg" alt=""
-                                                             class="profile-achievements-block-img">
-                    <div class="profile-achievements-block-caption">Достижение</div>
-                </div>
-                <div class="profile-achievements-block"><img src="../src/images/startCook.jpg" alt=""
-                                                             class="profile-achievements-block-img">
-                    <div class="profile-achievements-block-caption">Достижение</div>
-                </div>
             </div>
         </div>
     </div>
-    <div class="popup">
+    <div class="popup" data-component="Popup" data-name="MainPopup">
         <div class="popup-window">
             <div class="popup-window__caption"></div>
             <div class="popup-window__info"></div>
@@ -136,7 +92,7 @@
         </div>
     </div>
 
-
+    <script src="../src/js/components.js"></script>
     <script src="../src/js/popupsMixin.js"></script>
     <script src="../src/js/validates.js"></script>
     <script src="../src/js/profileHandlers.js"></script>

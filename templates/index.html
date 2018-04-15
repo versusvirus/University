@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Приложение</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <link rel="stylesheet" href="../src/css/mainStyles.css">
     <link rel="stylesheet" href="../src/css/registryStyles.css">
     <link rel="stylesheet" href="../src/css/validationStyles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
 </head>
 <body>
 <div class="container">
     <div class="header">
         <div class="header-caption-logo">
             <div class="header-caption">Ежедневная готовка</div>
-            <img src="../src/images/logo.png" alt="" class="header-logo">
+            <a href="index.html"><img src="../src/images/logo.png" alt="" class="header-logo"></a>
         </div>
         <div class="header-Menu">
-            <div class="header-Menu__item" data-id="0">О программе</div>
-            <div class="header-Menu__item" data-id="1">Справка</div>
-            <div class="header-Menu__item" data-id="2">Авторство</div>
+            <button class="header-Menu__item" data-id="0" data-component="MenuButton" data-name="menuStandartAbout"
+                    data-popup-name="MainPopup">О программе
+            </button>
+            <button class="header-Menu__item" data-id="1" data-component="MenuButton" data-name="menuStandartHelp"
+                    data-popup-name="MainPopup">Справка
+            </button>
+            <button class="header-Menu__item" data-id="2" data-component="MenuButton" data-name="menuStandartAuthor"
+                    data-popup-name="MainPopup">Авторство
+            </button>
         </div>
         <div class="header-Menu-burger">
             <div class="burger-menu-slice"></div>
@@ -28,9 +34,15 @@
         </div>
     </div>
     <div class="burger-menu">
-        <div class="burger-menu-item" data-id="0">О программе</div>
-        <div class="burger-menu-item" data-id="1">Справка</div>
-        <div class="burger-menu-item" data-id="2">Авторство</div>
+        <button class="burger-menu-item" data-id="0" data-component="MenuButton" data-name="menuBurgerAbout"
+                data-popup-name="MainPopup">О программе
+        </button>
+        <button class="burger-menu-item" data-id="1" data-component="MenuButton" data-name="menuBurgerHelp"
+                data-popup-name="MainPopup">Справка
+        </button>
+        <button class="burger-menu-item" data-id="2" data-component="MenuButton" data-name="menuBurgerAuthor"
+                data-popup-name="MainPopup">Авторство
+        </button>
     </div>
     <div class="content">
         <div class="main-content">
@@ -60,19 +72,22 @@
             </div>
             <div class="content-registration">
                 <div class="content-registration__caption">Заинтересовало? Регистрируйся по кнопке ниже!</div>
-                <div class="standart-button registrate-button" data-popup-id="1">Зарегистрироваться</div>
+                <button class="standart-button registrate-button" data-component="Button" data-name="registrateButton"
+                        data-popup-name="RegistratePopup">Зарегистрироваться
+                </button>
             </div>
         </div>
         <div class="signIn-content">
             <div class="signIn-content-window">
                 <div class="signIn-content-window__caption">Вход в систему</div>
                 <div class="signIn-content-window-inputItem"><span
-                        class="signIn-content-window-inputItem__caption">Имя пользователя</span><input type="text" id="inputedSign"
-                                                                                        class="signIn-content-window-input">
+                        class="signIn-content-window-inputItem__caption">Имя пользователя</span><input type="text"
+                                                                                                       id="inputedSign"
+                                                                                                       class="signIn-content-window-input">
                 </div>
                 <div class="signIn-content-window-inputItem"><span
                         class="signIn-content-window-inputItem__caption">Пароль</span><input type="password"
-                                                                                       class="signIn-content-window-input">
+                                                                                             class="signIn-content-window-input">
                 </div>
                 <a href="app.html" class="standart-button signInButton">Войти в систему</a>
             </div>
@@ -80,13 +95,13 @@
     </div>
     <div class="validateWindow">фывфыв</div>
 </div>
-<div class="popup">
+<div class="popup" data-component="Popup" data-name="MainPopup">
     <div class="popup-window">
         <div class="popup-window__caption"></div>
         <div class="popup-window__info"></div>
     </div>
 </div>
-<div class="popup registration-popup">
+<div class="popup registration-popup" data-component="Popup" data-name="RegistratePopup">
     <div class="popup-window registration-popup-window">
         <div class="popup-window__caption registration-popup-window-caption">Регистрация</div>
         <div class="registration-popup-inputString"><span
@@ -101,10 +116,10 @@
     </div>
 </div>
 
+<script src="../src/js/components.js"></script>
 <script src="../src/js/popupsMixin.js"></script>
 <script src="../src/js/validates.js"></script>
 <script src="../src/js/mainHandlers.js"></script>
 <script src="../src/js/registrationHandlers.js"></script>
-<script src="../src/js/components.js"></script>
 </body>
 </html>

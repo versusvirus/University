@@ -1,10 +1,19 @@
-var registrationButton = document.querySelector('.standart-button.registrate-button'),
-    registrationPopup = document.querySelector('.registration-popup');
+var registrationComponents = {};
 
-registrationButton.addEventListener('click', openRegistrationPopupWindow);
+initRegistrationControls();
 
-function openRegistrationPopupWindow() {
-    registrationPopup.style.display = 'flex';
+function initRegistrationControls() {
+   var controls = document.querySelectorAll('[data-component]');
+   controls.forEach(function (item) {
+      if (!item.hasAttribute('data-init')) {
+          switch (item.getAttribute('data-component')) {
+             case 'Button':
+                 registrationComponents[item.getAttribute('data-name')] = new Button(item, item.getAttribute('data-name'), function () {
+                   components[item.getAttribute('data-popup-name')].open();
+                 })
+          }
+      }
+   })
 }
 
 
