@@ -1,9 +1,10 @@
 var registrationButton = document.querySelector('.standart-button.registrate-button'),
-    registrationPopup = document.querySelector('.registration-popup'),
-    registrationWindow = registrationPopup.querySelector('.registration-popup-window');
+    registrationPopup = document.querySelector('.registration-popup');
 
-registrationButton.addEventListener('click', openRegistrationWindow);
+registrationButton.addEventListener('click', openRegistrationPopupWindow);
 
-function openRegistrationWindow() {
-
+function openRegistrationPopupWindow() {
+    registrationPopup.style.display = 'flex';
 }
+
+

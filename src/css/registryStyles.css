@@ -57,4 +57,72 @@
     font-weight: bold;
 }
 
+.main-content {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.content-header {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.content-info {
+    display: flex;
+}
+
+.content-info-item {
+    padding: 0 12px;
+    width: 324px;
+}
+
+.content-info-item__caption {
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+}
+
+.content-info-item__image {
+    width: 300px;
+    height: 300px;
+    border-radius: 30px;
+    border: 3px solid #cccccc;
+}
+
+.content-info-item__description {
+    font-size: 15px;
+}
+
 /*--------------------------------------------------------------*/
+
+/*Адаптив*/
+@media (max-width: 480px) {
+    .signIn-content-window {
+        min-width: calc(100% - 24px) !important;
+        margin: 0 12px !important;
+    }
+}
+
+@media (max-width: 1460px) {
+    .content-info {
+        justify-content: center;
+    }
+    .signIn-content-window {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 940px) {
+    .content-info-item:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width: 893px) {
+    .content-info-item:not(:first-child) {
+        display: none;
+    }
+}
+
+

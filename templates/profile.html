@@ -5,13 +5,141 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" href="../src/css/mainStyles.css">
+    <link rel="stylesheet" href="../src/css/profileStyles.css">
     <title>Профиль</title>
 </head>
 <body>
 
-<script src="../src/js/validates.js"></script>
-<script src="../src/js/mainHandlers.js"></script>
-<script src="../src/js/popupInfo.js"></script>
+<div class="container">
+    <div class="header">
+        <div class="header-caption-logo">
+            <div class="header-caption">Ежедневная готовка</div>
+            <img src="../src/images/logo.png" alt="" class="header-logo">
+        </div>
+        <div class="header-Menu">
+            <div class="header-Menu__item" data-id="0">О программе</div>
+            <div class="header-Menu__item" data-id="1">Справка</div>
+            <div class="header-Menu__item" data-id="2">Авторство</div>
+        </div>
+        <div class="header-Menu-burger">
+            <div class="burger-menu-slice"></div>
+            <div class="burger-menu-slice"></div>
+            <div class="burger-menu-slice"></div>
+            <div class="burger-menu-slice"></div>
+        </div>
+    </div>
+    <div class="burger-menu">
+        <div class="burger-menu-item" data-id="0">О программе</div>
+        <div class="burger-menu-item" data-id="1">Справка</div>
+        <div class="burger-menu-item" data-id="2">Авторство</div>
+    </div>
+    <div class="content">
+        <div class="profile-card"><img src="../src/images/startCook.jpg" alt="" class="profile-card-photo">
+            <div class="profile-card-info">
+                <div class="profile-card-info-block">
+                    <div class="profile-card-info-block-caption">Никнейм:</div>
+                    <div class="profile-card-info-block-content">Versusvirus</div>
+                </div>
+                <div class="profile-card-info-block">
+                    <div class="profile-card-info-block-caption">Имя пользователя:</div>
+                    <div class="profile-card-info-block-content">Вадим Волоцкой</div>
+                </div>
+                <div class="profile-card-info-block">
+                    <div class="profile-card-info-block-caption">Уровень:</div>
+                    <div class="profile-card-info-block-content">24</div>
+                </div>
+            </div>
+            <div class="validateWindow"></div>
+        </div>
+        <div class="profile-recipes">
+            <div class="profile-recipes-header">Выученные рецепты</div>
+            <div class="profile-recipes-content">
+                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
+                                                               class="profile-recipes-recipe-block-img">
+                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
+                </div>
+                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
+                                                               class="profile-recipes-recipe-block-img">
+                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
+                </div>
+                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
+                                                               class="profile-recipes-recipe-block-img">
+                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
+                </div>
+                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
+                                                               class="profile-recipes-recipe-block-img">
+                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
+                </div>
+                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
+                                                               class="profile-recipes-recipe-block-img">
+                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
+                </div>
+                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
+                                                               class="profile-recipes-recipe-block-img">
+                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
+                </div>
+                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
+                                                               class="profile-recipes-recipe-block-img">
+                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
+                </div>
+                <div class="profile-recipes-recipe-block"><img src="../src/images/startCook.jpg" alt=""
+                                                               class="profile-recipes-recipe-block-img">
+                    <div class="profile-recipes-recipe-block-caption">Название рецепта</div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-achievements">
+            <div class="profile-achievements-header">Достижения</div>
+            <div class="profile-achievements-content">
+                <div class="profile-achievements-block"><img src="../src/images/startCook.jpg" alt=""
+                                                             class="profile-achievements-block-img">
+                    <div class="profile-achievements-block-caption">Достижение</div>
+                </div>
+                <div class="profile-achievements-block"><img src="../src/images/startCook.jpg" alt=""
+                                                             class="profile-achievements-block-img">
+                    <div class="profile-achievements-block-caption">Достижение</div>
+                </div>
+                <div class="profile-achievements-block"><img src="../src/images/startCook.jpg" alt=""
+                                                             class="profile-achievements-block-img">
+                    <div class="profile-achievements-block-caption">Достижение</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popup">
+        <div class="popup-window">
+            <div class="popup-window__caption"></div>
+            <div class="popup-window__info"></div>
+        </div>
+    </div>
+    <div class="popup recipe-popup">
+        <div class="popup-window recipe-popup-window">
+            <div class="popup-window__caption recipe-popup-window__caption">Рецепт</div>
+            <div class="popup-window__info recipe-popup-window__info">
+                <img src="../src/images/startCook.jpg" alt="" class="recipe-popup-window-img">
+                <div class="recipe-popup-window-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Aliquid, animi atque cum deserunt dolores eius est exercitationem neque quae quas quasi ratione
+                    similique suscipit ullam, vero? Blanditiis, commodi cumque debitis deleniti doloremque ea
+                    exercitationem magnam natus perferendis, qui, quidem ratione repudiandae voluptatibus! Minus nam
+                    natus pariatur sint! Deserunt, laborum, modi.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup achievment-popup">
+        <div class="popup-window achievment-popup-window">
+            <div class="popup-window__caption achievment-popup-window__caption"></div>
+            <div class="popup-window__info achievment-popup-window__info"></div>
+        </div>
+    </div>
+
+
+    <script src="../src/js/popupsMixin.js"></script>
+    <script src="../src/js/validates.js"></script>
+    <script src="../src/js/profileHandlers.js"></script>
+    <script src="../src/js/mainHandlers.js"></script>
 </body>
 </html>
