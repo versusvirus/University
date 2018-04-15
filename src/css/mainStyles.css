@@ -6,6 +6,7 @@ html {
 body {
     background-color: #f6f5f3;
 }
+
 * {
     box-sizing: border-box;
     cursor: default;
@@ -19,7 +20,9 @@ a, input, button {
 a:hover,
 input:hover,
 .standart-button:hover,
-.header-Menu__item:hover {
+.header-Menu__item:hover,
+.header-Menu-burger,
+.burger-menu-item:hover {
     cursor: pointer;
 }
 
@@ -47,7 +50,8 @@ input:focus {
 }
 
 .standart-button:hover,
-.header-Menu__item:hover {
+.header-Menu__item:hover,
+.burger-menu-item:hover {
     transition-duration: 0.3s;
     color: white;
     background-color: #ff7c19;
@@ -71,12 +75,12 @@ input:focus {
 .popup {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     display: none;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .popup-window {
@@ -134,6 +138,35 @@ input:focus {
     padding: 16px;
 }
 
+.header-Menu-burger {
+    display: none;
+    width: 50px;
+}
+
+.burger-menu-slice {
+    width: 80%;
+    background-color: black;
+    border: 2px solid black;
+    margin: 6px auto;
+}
+
+.burger-menu {
+    display: none;
+    justify-content: space-between;
+    border-bottom: 1px solid #cccccc;
+    background-color: #f2f2f2;
+}
+
+.header-Menu-burger.menu-opened {
+    transform: rotate(90deg);
+}
+
+.burger-menu-item  {
+    padding: 16px;
+    width: 33%;
+    text-align: center;
+}
+
 /*--------------------------------------------------------------*/
 
 /*Стили для контента*/
@@ -147,6 +180,7 @@ input:focus {
     padding-top: 20px;
     text-align: center;
 }
+
 .content-header {
     font-size: 18px;
     font-weight: bold;
@@ -164,6 +198,7 @@ input:focus {
 .content-info-item__caption {
     font-weight: 500;
     font-size: 16px;
+    text-align: center;
 }
 
 .content-info-item__image {
@@ -175,4 +210,60 @@ input:focus {
 
 .content-info-item__description {
     font-size: 15px;
+}
+
+/*Адаптив*/
+
+@media (max-width: 1460px) {
+    .container {
+        width: auto;
+    }
+
+    .content {
+        flex-direction: column-reverse;
+        padding: 0;
+    }
+
+    .content-info {
+        justify-content: center;
+    }
+
+    .signIn-content-window {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 940px) {
+    .content-info-item:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width: 893px) {
+    .content-info-item:not(:first-child) {
+        display: none;
+    }
+}
+
+@media (max-width: 690px) {
+    .header-Menu {
+        display: none;
+    }
+    .header-Menu-burger {
+        display: block;
+    }
+    .burger-menu.menu-opened {
+        display: flex;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .signIn-content-window {
+        min-width: 100% !important;
+    }
+    .burger-menu-item {
+        font-size: 13px;
+    }
 }

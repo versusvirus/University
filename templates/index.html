@@ -20,6 +20,17 @@
             <div class="header-Menu__item" data-id="1">Справка</div>
             <div class="header-Menu__item" data-id="2">Авторство</div>
         </div>
+        <div class="header-Menu-burger">
+            <div class="burger-menu-slice"></div>
+            <div class="burger-menu-slice"></div>
+            <div class="burger-menu-slice"></div>
+            <div class="burger-menu-slice"></div>
+        </div>
+    </div>
+    <div class="burger-menu">
+        <div class="burger-menu-item" data-id="0">О программе</div>
+        <div class="burger-menu-item" data-id="1">Справка</div>
+        <div class="burger-menu-item" data-id="2">Авторство</div>
     </div>
     <div class="content">
         <div class="main-content">
@@ -56,7 +67,7 @@
             <div class="signIn-content-window">
                 <div class="signIn-content-window__caption">Вход в систему</div>
                 <div class="signIn-content-window-inputItem"><span
-                        class="signIn-content-window-inputItem__caption">Имя пользователя</span><input type="text"
+                        class="signIn-content-window-inputItem__caption">Имя пользователя</span><input type="text" id="inputedSign"
                                                                                         class="signIn-content-window-input">
                 </div>
                 <div class="signIn-content-window-inputItem"><span
@@ -67,31 +78,32 @@
             </div>
         </div>
     </div>
-    <div class="popup">
-        <div class="popup-window">
-            <div class="popup-window__caption"></div>
-            <div class="popup-window__info"></div>
-        </div>
-    </div>
-    <div class="popup registration-popup">
-        <div class="popup-window registration-popup-window">
-            <div class="popup-window__caption registration-popup-window-caption">Регистрация</div>
-            <div class="registration-popup-inputString"><span
-                    class="registration-popup-inputString__caption">Имя пользователя:</span><input type="text"
-                                                                                                   class="registration-popup-input">
-            </div>
-            <div class="registration-popup-inputString"><span
-                    class="registration-popup-inputString__caption">Пароль:</span><input type="password"
-                                                                                         class="registration-popup-input">
-            </div>
-            <div class="standart-button registration-popup-button">Принять</div>
-        </div>
-    </div>
     <div class="validateWindow">фывфыв</div>
+</div>
+<div class="popup">
+    <div class="popup-window">
+        <div class="popup-window__caption"></div>
+        <div class="popup-window__info"></div>
+    </div>
+</div>
+<div class="popup registration-popup">
+    <div class="popup-window registration-popup-window">
+        <div class="popup-window__caption registration-popup-window-caption">Регистрация</div>
+        <div class="registration-popup-inputString"><span
+                class="registration-popup-inputString__caption">Имя пользователя:</span><input type="text"
+                                                                                               class="registration-popup-input">
+        </div>
+        <div class="registration-popup-inputString"><span
+                class="registration-popup-inputString__caption">Пароль:</span><input type="password"
+                                                                                     class="registration-popup-input">
+        </div>
+        <div class="standart-button registration-popup-button">Принять</div>
+    </div>
 </div>
 
 <script src="../src/js/popupInfo.js"></script>
 <script src="../src/js/validates.js"></script>
 <script src="../src/js/mainHandlers.js"></script>
+<script src="../src/js/components.js"></script>
 </body>
 </html>
