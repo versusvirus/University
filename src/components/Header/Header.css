@@ -1,0 +1,83 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #cccccc;
+    background-color: #f2f2f2;
+}
+
+.header-caption-logo {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 50px;
+    height: 50px;
+}
+
+.header-caption {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0 12px;
+}
+
+.header-Menu {
+    display: flex;
+}
+
+.header-Menu-burger {
+    display: none;
+    width: 40px;
+}
+
+.burger-menu-slice {
+    width: 80%;
+    border: 2px solid #0f0c0c;
+    margin: 4px auto;
+}
+
+.burger-menu-slice:nth-child(1) {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.burger-menu-slice:nth-child(4) {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.burger-menu {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #cccccc;
+    background-color: #f2f2f2;
+}
+
+.menu-opened  .header-Menu-burger .burger-menu-slice {
+    border-color: #112233;
+}
+.menu-opened .header-Menu-burger {
+    transform: rotate(90deg);
+}
+
+.header-Menu-burger,
+.burger-menu-slice {
+    cursor: pointer;
+}
+
+/*Адаптив*/
+@media (min-width: 711px) {
+    .burger-menu {
+        display: none;
+    }
+}
+@media (max-width: 710px) {
+    .header-Menu {
+        display: none;
+    }
+
+    .header-Menu-burger {
+        display: block;
+    }
+}

@@ -1,0 +1,23 @@
+body {
+    background-color: #f6f5f3;
+}
+
+* {
+    box-sizing: border-box;
+    cursor: default;
+    font-family: "Century Gothic";
+}
+
+.container {
+    width: 1440px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #fff;
+    position: relative;
+}
+
+@media (max-width: 1460px) {
+    .container {
+        width: auto;
+    }
+}
