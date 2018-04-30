@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../src/css/registryStyles.css">
     <link rel="stylesheet" href="../src/css/validationStyles.css">
 </head>
-<body>
+<body data-component="App" data-name="registryApp">
 <div class="container">
     <div class="header">
         <div class="header-caption-logo">
@@ -26,7 +26,7 @@
                     data-popup-name="MainPopup">Авторство
             </button>
         </div>
-        <div class="header-Menu-burger">
+        <div class="header-Menu-burger" data-component="Button" data-name="BurgerMenuButton">
             <div class="burger-menu-slice"></div>
             <div class="burger-menu-slice"></div>
             <div class="burger-menu-slice"></div>
@@ -78,17 +78,17 @@
             </div>
         </div>
         <div class="signIn-content">
-            <div class="signIn-content-window">
+            <div class="signIn-content-window" data-component="Form" data-name="SignInForm">
                 <div class="signIn-content-window__caption">Вход в систему</div>
                 <div class="signIn-content-window-inputItem"><span
                         class="signIn-content-window-inputItem__caption">Имя пользователя</span>
-                    <input type="text" class="signIn-content-window-input">
+                    <input type="text" class="signIn-content-window-input" data-component="Input" data-name="SignInUserName">
                 </div>
                 <div class="signIn-content-window-inputItem"><span
                         class="signIn-content-window-inputItem__caption">Пароль</span>
-                    <input type="password" class="signIn-content-window-input" >
+                    <input type="password" class="signIn-content-window-input" data-component="Input" data-name="SignInPassword">
                 </div>
-                <button href="app.html" class="standart-button signInButton">Войти в систему</button>
+                <button class="standart-button signInButton submit-button" data-name="SignInButton">Войти в систему</button>
             </div>
         </div>
     </div>
@@ -121,9 +121,14 @@
     </div>
 </div>
 
-
+<script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="../src/js/instances.js"></script>
 <script src="../src/js/validates.js"></script>
 <script src="../src/js/components.js"></script>
+<script src="../src/js/Core-Init.js"></script>
 <script src="../src/js/popupsMixin.js"></script>
 <script src="../src/js/mainHandlers.js"></script>
 <script src="../src/js/registrationHandlers.js"></script>

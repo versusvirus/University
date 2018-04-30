@@ -9,9 +9,6 @@ class Validator {
         this.errorBlock.classList.add('validateWindow');
         this.errorBlock.innerHTML = error;
         errorsPlace.appendChild(this.errorBlock);
-        this.input.addEventListener('focus', function () {
-            debugger;
-        })
     }
 
     validate() {

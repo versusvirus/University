@@ -22,10 +22,9 @@ button {
 
 a:hover,
 input:hover,
-.standart-button:hover,
-.header-Menu__item:hover,
-.header-Menu-burger,
-.burger-menu-item:hover,
+[data-component="Button"],
+[data-component="MenuButton"],
+button,
 .burger-menu-slice,
 .header-logo{
     cursor: pointer;
@@ -38,7 +37,7 @@ input:focus {
 .container {
     width: 1440px;
     margin: 0 auto;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #fff;
     position: relative;
 }
@@ -53,10 +52,15 @@ input:focus {
     transition-duration: 0.3s;
 }
 
+.standart-button[disabled="true"] {
+    border-color: #cccccc;
+}
+
 .standart-button[disabled="true"]:hover,
 .header-Menu__item[disabled="true"]:hover,
 .burger-menu-item[disabled="true"]:hover {
     color: graytext;
+    cursor: default;
 }
 
 .header-Menu__item[disabled="true"]:hover,
@@ -64,6 +68,9 @@ input:focus {
     background-color: #f2f2f2;
 }
 
+.standart-button[disabled="true"]:hover {
+    background-color: transparent;
+}
 
 
 .standart-button:hover,
@@ -166,7 +173,6 @@ input:focus {
 }
 
 .burger-menu-slice {
-    width: 80%;
     border: 2px solid #0f0c0c;
     margin: 4px auto;
 }
@@ -198,6 +204,28 @@ input:focus {
     text-align: center;
 }
 
+.header-hint {
+    padding: 8px;
+    background: white;
+    border: 3px solid wheat;
+    border-radius: 6px;
+    max-width: 150px;
+    position: absolute;
+    left: 330px;
+    top: 4px;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+
+.header-hint .header-hint-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 9px solid transparent;
+    border-right: 8px solid wheat;
+    left: -19px;
+}
+
 /*--------------------------------------------------------------*/
 
 /*Стили для контента*/
@@ -225,24 +253,18 @@ input:focus {
 }
 
 @media (max-width: 940px) {
-    .content-info-item:nth-child(3) {
-        display: none;
-    }
-
     .popup-window {
         max-width: 60%;
-    }
-}
-
-@media (max-width: 893px) {
-    .content-info-item:not(:first-child) {
-        display: none;
     }
 }
 
 @media (max-width: 710px) {
     .header-Menu {
         display: none;
+    }
+
+    .burger-menu {
+        display: flex;
     }
 
     .popup-window {
@@ -253,12 +275,14 @@ input:focus {
         display: block;
     }
 
-    .burger-menu.menu-opened {
-        display: flex;
-    }
-
     .header-Menu-burger.menu-opened .burger-menu-slice {
         border-color: #112233;
+    }
+}
+
+@media (max-width: 540px) {
+    .header-hint {
+        display: none;
     }
 }
 
@@ -271,3 +295,42 @@ input:focus {
         max-width: 70%;
     }
 }
+
+.hidden {
+    display: none !important;
+}
+
+/*Стилизация скролла*/
+
+::-webkit-scrollbar-button {
+    background-image:url('');
+    background-repeat:no-repeat;
+    width:5px;
+    height:0px
+}
+
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: #cccccc;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: #ff7c19;
+    cursor: pointer;
+}
+
+::-webkit-resizer{
+    background-image:url('');
+    background-repeat:no-repeat;
+    width:4px;
+    height:0px
+}
+
+::-webkit-scrollbar{
+    width: 4px;
+}
+

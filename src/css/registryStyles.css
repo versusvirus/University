@@ -65,6 +65,7 @@
 .content-header {
     font-size: 18px;
     font-weight: bold;
+    padding: 0 12px;
 }
 
 .content-info {
@@ -96,12 +97,6 @@
 /*--------------------------------------------------------------*/
 
 /*Адаптив*/
-@media (max-width: 480px) {
-    .signIn-content-window {
-        min-width: calc(100% - 24px) !important;
-        margin: 0 12px !important;
-    }
-}
 
 @media (max-width: 1460px) {
     .content-info {
@@ -113,16 +108,24 @@
     }
 }
 
+@media (max-width: 970px) {
+    .signIn-content-window {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
 @media (max-width: 940px) {
     .content-info-item:nth-child(3) {
         display: none;
     }
 }
 
-@media (max-width: 893px) {
+@media (max-width: 660px) {
     .content-info-item:not(:first-child) {
         display: none;
     }
 }
+
 
 

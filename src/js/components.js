@@ -3,7 +3,17 @@
  * markup - разметка
  * name - имя компонента
  */
-var components = {};
+var components = {},
+    timerGone = new Event('timerGone', {bubbles: true}),
+    gameClosed = new Event('gameClosed', {bubbles: true});
+
+HTMLElement.prototype.getName = function () {
+    return this.getAttribute('data-name');
+};
+
+HTMLElement.prototype.getControlType = function () {
+    return this.getAttribute('data-component');
+};
 
 class Component {
     constructor(markup, name) {
@@ -67,7 +77,7 @@ class ProgressBar extends Component {
             shift = difInPercents / 20,
             self = this,
             fillBar = [{
-                width: getComputedStyle(this.fill).width,
+                width: getComputedStyle(this.fill).width
             }, {
                 width: modifiedPercents + '%'
             }
@@ -172,8 +182,8 @@ class Popup extends Component {
     close(event, hardClose) {
 
         if (hardClose) {
-            this.control.checkChildControl();
-            this.style.display = 'none'
+            this.checkChildControl();
+            this.markup.style.display = 'none'
 
         } else if (event.target == this) {
             this.control.checkChildControl();
@@ -182,7 +192,7 @@ class Popup extends Component {
     }
 
     checkChildControl() {
-        let form = document.querySelector('[data-component="Form"');
+        let form = this.markup.querySelector('[data-component="Form"]');
         form && form.control.closeForm();
     }
 
@@ -268,5 +278,73 @@ class Form extends Component {
             data.push(item.value);
         });
         return data;
+    }
+}
+
+class Caption extends Component {
+    constructor(markup, name) {
+        super(markup, name);
+    }
+
+    setCaption(text) {
+        this.markup.innerHTML = text;
+    }
+}
+
+class Timer extends Component {
+    constructor(markup, name) {
+        super(markup, name);
+    }
+
+    setTimerDuration(seconds) {
+        this.duration = seconds;
+    }
+
+    getTimerDuration() {
+        return this.duration;
+    }
+
+    getCurrentTime() {
+        return this.currentTime;
+    }
+
+    setCurrentTime(time) {
+        this.currentTime = time;
+    }
+
+    tick(time) {
+        var self = this;
+        time.seconds--;
+
+        if (time.seconds === -1) {
+            time.seconds = 59;
+            time.minutes--;
+        }
+        var timeString = `${time.minutes <= 9 ? `0${time.minutes}` : time.minutes}:${time.seconds <= 9 ? `0${time.seconds}` : time.seconds}`;
+        self.markup.innerHTML = timeString;
+        if (!(time.minutes === 0 && time.seconds === 0)) {
+            setTimeout(function () {
+                self.tick(time);
+            }, 1000);
+        } else {
+            this.markup.classList.remove('timerActive');
+            this.markup.dispatchEvent(timerGone);
+        }
+    }
+
+    startTimer() {
+        this.markup.classList.add('timerActive');
+        var time = {
+            minutes: Math.floor(this.duration / 60),
+            seconds: this.duration - Math.floor(this.duration / 60) * 60
+        };
+        this.tick(time);
+    }
+
+    static getTimeFromSeconds(time) {
+        return {
+            minutes: Math.floor(time / 60),
+            seconds: Math.floor(time - Math.floor(time / 60) * 60)
+        }
     }
 }
