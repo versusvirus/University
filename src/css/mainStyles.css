@@ -118,7 +118,7 @@ input:focus {
     border: 2px solid gray;
     padding: 16px;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     text-align: center;
     max-width: 50%;
     border-radius: 15px;
@@ -210,6 +210,7 @@ input:focus {
 }
 
 .header-hint {
+    display: none;
     padding: 8px;
     background: white;
     border: 3px solid wheat;
@@ -217,6 +218,7 @@ input:focus {
     max-width: 150px;
     position: absolute;
     left: 330px;
+    z-index: 1;
     top: 4px;
     font-size: 16px;
     word-wrap: break-word;
@@ -268,7 +270,7 @@ input:focus {
         display: none;
     }
 
-    .burger-menu {
+    .burger-menu:not(.hidden) {
         display: flex;
     }
 

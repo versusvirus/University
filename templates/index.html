@@ -14,6 +14,9 @@
         <div class="header-caption-logo">
             <div class="header-caption">Ежедневная готовка</div>
             <a href="index.html"><img src="../src/images/logo.png" alt="" class="header-logo"></a>
+            <div class="header-hint" data-component="Caption" data-name="headerHint">
+                <div class="header-hint-triangle"></div>
+            </div>
         </div>
         <div class="header-Menu">
             <button class="header-Menu__item" data-id="0" data-component="MenuButton" data-name="menuStandartAbout"
@@ -26,14 +29,14 @@
                     data-popup-name="MainPopup">Авторство
             </button>
         </div>
-        <div class="header-Menu-burger" data-component="Button" data-name="BurgerMenuButton">
+        <button class="header-Menu-burger" data-component="Button" data-name="BurgerMenuButton">
             <div class="burger-menu-slice"></div>
             <div class="burger-menu-slice"></div>
             <div class="burger-menu-slice"></div>
             <div class="burger-menu-slice"></div>
-        </div>
+        </button>
     </div>
-    <div class="burger-menu">
+    <div class="burger-menu hidden">
         <button class="burger-menu-item" data-id="0" data-component="MenuButton" data-name="menuBurgerAbout"
                 data-popup-name="MainPopup">О программе
         </button>

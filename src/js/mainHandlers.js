@@ -14,8 +14,7 @@ components.BurgerMenuButton.setFunc(function () {
     burgerMenu.classList.toggle('hidden');
 });
 
-document.onload = showRandomHint();
-
+document.onload = setTimeout(showRandomHint, 3000);
 function showRandomHint() {
     components.headerHint.setCaption(`<div class="header-hint-triangle"></div>${hints[randomInteger(0,2)]}`);
     $(components.headerHint.getMarkup()).fadeIn('slow');
