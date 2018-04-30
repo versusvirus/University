@@ -1,4 +1,9 @@
 /*Общие стили для страницы*/
+@font-face {
+    font-family: "Century Gothic";
+    src: url("../fonts/GOTHIC.TTF");
+}
+
 body {
     background-color: #f6f5f3;
 }
