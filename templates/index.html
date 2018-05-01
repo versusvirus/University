@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>Приложение</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <link rel="stylesheet" href="../src/css/mainStyles.css">
-    <link rel="stylesheet" href="../src/css/registryStyles.css">
-    <link rel="stylesheet" href="../src/css/validationStyles.css">
+    <link rel="stylesheet" href="/css/mainStyles.css">
+    <link rel="stylesheet" href="/css/registryStyles.css">
+    <link rel="stylesheet" href="/css/validationStyles.css">
 </head>
 <body data-component="App" data-name="registryApp">
 <div class="container">
     <div class="header">
         <div class="header-caption-logo">
             <div class="header-caption">Ежедневная готовка</div>
-            <a href="index.html"><img src="../src/images/logo.png" alt="" class="header-logo"></a>
+            <a href="/index.html"><img src="/images/logo.png" alt="" class="header-logo"></a>
             <div class="header-hint" data-component="Caption" data-name="headerHint">
                 <div class="header-hint-triangle"></div>
             </div>
@@ -53,21 +53,21 @@
             <div class="content-info">
                 <div class="content-info-item">
                     <div class="content-info-item__caption">Научитесь готовить</div>
-                    <img src="../src/images/startCook.jpg" alt="" class="content-info-item__image">
+                    <img src="/images/startCook.jpg" alt="" class="content-info-item__image">
                     <div class="content-info-item__description">
                         Это приложение позволит вам научиться готовить абсолютно любые блюда!
                     </div>
                 </div>
                 <div class="content-info-item">
                     <div class="content-info-item__caption">Выучите много новых рецептов</div>
-                    <img src="../src/images/manyRecepts.jpg" alt="" class="content-info-item__image">
+                    <img src="/images/manyRecepts.jpg" alt="" class="content-info-item__image">
                     <div class="content-info-item__description">
                         Большая база рецептов от азов до профессиональной кулинарии!
                     </div>
                 </div>
                 <div class="content-info-item">
                     <div class="content-info-item__caption">Повысите свои навыки готовки</div>
-                    <img src="../src/images/skillCook.jpg" alt="" class="content-info-item__image">
+                    <img src="/images/skillCook.jpg" alt="" class="content-info-item__image">
                     <div class="content-info-item__description">
                         Если вы уже умеете готовить, то всегда сможете научиться здесь чему то новому!
                     </div>
@@ -85,13 +85,25 @@
                 <div class="signIn-content-window__caption">Вход в систему</div>
                 <div class="signIn-content-window-inputItem"><span
                         class="signIn-content-window-inputItem__caption">Имя пользователя</span>
-                    <input type="text" class="signIn-content-window-input" data-component="Input" data-name="SignInUserName">
+                    <input type="text"
+                           class="signIn-content-window-input"
+                           data-component="Input"
+                           data-name="SignInUserName"
+                           data-regExp="/^[a-zA-Z0-9]+$/"
+                           data-error="Некорректный никнейм"
+                    >
                 </div>
                 <div class="signIn-content-window-inputItem"><span
                         class="signIn-content-window-inputItem__caption">Пароль</span>
-                    <input type="password" class="signIn-content-window-input" data-component="Input" data-name="SignInPassword">
+                    <input type="password" class="signIn-content-window-input"
+                           data-component="Input"
+                           data-name="SignInPassword"
+                           data-regExp="/^[a-zA-Z0-9]+$/"
+                           data-error="Некорректный пароль"
+                    >
                 </div>
-                <button class="standart-button signInButton submit-button" data-name="SignInButton">Войти в систему</button>
+                <button class="standart-button signInButton submit-button" data-name="SignInButton">Войти в систему
+                </button>
             </div>
         </div>
     </div>
@@ -109,31 +121,54 @@
     <div class="popup-window registration-popup-window" data-component="Form" data-name="RegistrationForm">
         <div class="popup-window__caption registration-popup-window-caption">Регистрация</div>
         <div class="registration-popup-inputString"><span
-                class="registration-popup-inputString__caption">Никнейм:</span><input type="text" data-component="Input" data-name="NicknameReg" data-error="Некорректный никнейм"
-                                                                                               class="registration-popup-input">
+                class="registration-popup-inputString__caption">Никнейм:</span>
+            <input type="text"
+                   data-component="Input"
+                   data-name="NicknameReg"
+                   data-error="Некорректный никнейм"
+                   class="registration-popup-input"
+                   data-regExp="/^[a-zA-Z0-9]+$/"
+            >
         </div>
         <div class="registration-popup-inputString"><span
-                class="registration-popup-inputString__caption">Пароль:</span><input type="password"
-                                                                                     class="registration-popup-input" data-component="Input" data-error="Некорректный пароль" data-name="PassReg">
+                class="registration-popup-inputString__caption">Пароль:</span>
+            <input type="password"
+                   class="registration-popup-input"
+                   data-component="Input"
+                   data-error="Некорректный пароль"
+                   data-name="PassReg"
+                   data-regExp="/^[a-zA-Z0-9]+$/"
+            >
         </div>
         <div class="registration-popup-inputString"><span
-                class="registration-popup-inputString__caption">Имя пользователя:</span><input type="text"
-                                                                                     class="registration-popup-input" data-component="Input" data-error="Некорректное имя пользователя" data-name="UsernameReg">
+                class="registration-popup-inputString__caption">Имя пользователя:</span>
+            <input type="text"
+                   class="registration-popup-input"
+                   data-component="Input"
+                   data-error="Некорректное имя пользователя"
+                   data-name="UsernameReg"
+                   data-regExp="/^[a-zA-Z0-9]+$/"
+            >
         </div>
-        <div class="standart-button registration-popup-button submit-button" data-component data-name="submit-reg-button">Принять</div>
+        <div class="standart-button registration-popup-button submit-button" data-component
+             data-name="submit-reg-button">Принять
+        </div>
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
-<script src="../src/js/instances.js"></script>
-<script src="../src/js/validates.js"></script>
-<script src="../src/js/components.js"></script>
-<script src="../src/js/Core-Init.js"></script>
-<script src="../src/js/popupsMixin.js"></script>
-<script src="../src/js/mainHandlers.js"></script>
-<script src="../src/js/registrationHandlers.js"></script>
+<script src="/js/serverListener.js"></script>
+<script src="/js/registrationServerListener.js"></script>
+<script src="/js/instances.js"></script>
+<script src="/js/validates.js"></script>
+<script src="/js/components.js"></script>
+<script src="/js/Core-Init.js"></script>
+<script src="/js/popupsMixin.js"></script>
+<script src="/js/mainHandlers.js"></script>
+<script src="/js/registrationHandlers.js"></script>
 </body>
 </html>

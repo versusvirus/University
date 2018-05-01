@@ -9,8 +9,8 @@ class Game {
         this.exp = exp;
         this.controlButton.setCaption('Начать готовку');
         let burgerMenu = document.querySelector('.burger-menu');
-        components.BurgerMenuButton.getMarkup().classList.toggle('menu-opened');
-        burgerMenu.classList.toggle('hidden');
+        components.BurgerMenuButton.getMarkup().classList.remove('menu-opened');
+        burgerMenu.classList.add('hidden');
         components.appRecipeHeader.setCaption(this.gameName);
         components.BurgerMenuButton.setEnabled(false);
         components.BurgerMenuButton.getMarkup().setAttribute('title', 'Во время игры меню недоступно на мобильных устройствах');
@@ -85,19 +85,16 @@ function generateStep(text) {
 function getData(recipeName) {
     return [
         {
-            caption: 'Варите пельмешки'
+            caption: 'Поставьте воду на газ'
         },
         {
-            caption: 'Поставьте водичку на газ'
+            caption: 'Доведите до кипения'
         },
         {
-            caption: 'Варите пельмени',
-            duration: 2
+            caption: 'Посолите, поперчите, добавьте лавровый лист',
         },
         {
-            caption: 'Кушайте пожалуйста',
-            duration: 2
+            caption: 'Наслаждайтесь пельмешами'
         }
-
     ]
 }

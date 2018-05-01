@@ -233,7 +233,6 @@ class Input extends Component {
 
     setToBase() {
         this.setCaption('');
-        this.validator.hideMessage();
         this.markup.classList.remove('validation-error');
     }
 }
@@ -244,10 +243,6 @@ class Form extends Component {
         let submitBtn = this.markup.querySelector('.submit-button');
         this.submitBtn = new Button(submitBtn, submitBtn.getAttribute('data-name'));
         this.inputs = this.markup.querySelectorAll('input');
-        this.validationBlock = document.createElement('div');
-        this.validationBlock.innerHTML = 'Не все поля заполнены корректно';
-        this.validationBlock.classList.add('validateWindow');
-        errorsPlace.appendChild(this.validationBlock);
     }
 
     isValidated() {
@@ -258,15 +253,12 @@ class Form extends Component {
             }
         });
         if (!validated) {
-            this.validationBlock.style.display = 'block';
-        } else {
-            this.validationBlock.style.display = 'none';
+            showErrorMessage('Не все поля заполнены корректно');
         }
         return validated;
     }
 
     closeForm() {
-        this.validationBlock.style.display = 'none';
         this.inputs.forEach(function (item) {
             item.control.setToBase();
         });

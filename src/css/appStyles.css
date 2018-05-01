@@ -43,9 +43,17 @@
     z-index: 2;
 }
 
+.profile-level-bar.loading-bar {
+    position: relative;
+    top: 46px;
+}
+
+.profile-level-bar.loading-bar .profile-level-bar-percents{
+    display: none;
+}
+
 .profile-level-bar-fill {
     background: linear-gradient(to right, #F2CA97, #ff7c19);
-    width: 99.5%;
     height: 26px;
     z-index: 1;
 }

@@ -14,14 +14,19 @@ components.BurgerMenuButton.setFunc(function () {
     burgerMenu.classList.toggle('hidden');
 });
 
-document.onload = setTimeout(showRandomHint, 3000);
+document.addEventListener('DOMContentLoaded', showRandomHint);
+
 function showRandomHint() {
-    components.headerHint.setCaption(`<div class="header-hint-triangle"></div>${hints[randomInteger(0,2)]}`);
+    components.headerHint.setCaption(`<div class="header-hint-triangle"></div>${hints[randomInteger(0,hints.length)]}`);
+    components.headerHint.getMarkup().classList.remove('hidden');
     $(components.headerHint.getMarkup()).fadeIn('slow');
     setTimeout(function () {
-        $(components.headerHint.getMarkup()).fadeOut('slow');
-    }, 3000);
-    setTimeout(showRandomHint, 5000);
+        $(components.headerHint.getMarkup()).fadeOut('slow', function () {
+            components.headerHint.getMarkup().classList.add('hidden');
+        });
+
+    }, 5000);
+    setTimeout(showRandomHint, 15000);
 }
 
 function randomInteger(min, max) {

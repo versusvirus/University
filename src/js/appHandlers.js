@@ -3,7 +3,6 @@ var appWindow = document.querySelector('.appWindow'),
     stepsWindow = document.querySelector('.appWindow-stepsContent'),
     curRecipe = null,
     curGame = null;
-curGame
 
 for (var key in components) {
     if (components[key].getMarkup().getControlType() === 'Button' && components[key].getMarkup().classList.contains('app-recipe')) {
@@ -33,7 +32,7 @@ for (var key in components) {
 }
 
 components.startButton.setFunc(function () {
-    curGame = new Game(getData(), components.appButton, components.appTimer, stepsWindow, curRecipe.markup.getAttribute('data-exp'), curRecipe.name);
+    curGame = new Game(curRecipe.markup.recipeData, components.appButton, components.appTimer, stepsWindow, curRecipe.markup.getAttribute('data-exp'), curRecipe.name);
     curGame.start();
     curRecipe.markup.parentNode.classList.remove('selected');
     recipeWindow.classList.remove('recipe-selected');
