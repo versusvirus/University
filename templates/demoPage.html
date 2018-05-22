@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Демо фреймворка</title>
+    <style>
+        [disabled] {
+            background-color: transparent;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none;
+            font-family: "Century Gothic";
+        }
+        button, input, textarea {
+            border: none;
+            font-family: 'Century Gothic';
+        }
+        textarea {
+            resize: none;
+        }
+        input[disabled], textarea[disabled] {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: black;
+        }
+        input, textarea {
+            line-height: inherit;
+        }
+        body {
+            padding: 0 12px;
+        }
+        .header {
+            font-size: 25px;
+            text-align: center;
+        }
+        .section-header {
+            font-size: 23px;
+            margin: 12px 0;
+        }
+        .controls-Button {
+            padding: 3px 4px;
+            border: 1px solid #0f0c0c;
+            background-color: #f2f2f2;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 5px 0 #ccc;
+        }
+        .controls-Button:active {
+            box-shadow: 0 2px 0 #ccc;
+            position: relative;
+            top: 3px;
+        }
+        button {
+            margin: 4px 0;
+        }
+        .controls-Input {
+            min-height: 20px;
+            line-height: 20px;
+            padding: 2px 0 2px 4px;
+            border: 1px solid black;
+            display: inline-block;
+            position: relative;
+            font-size: 14px;
+        }
+        .controls-Input.control-disabled {
+            border: 1px solid transparent;
+            border-bottom: 1px solid #f2f2f2;
+        }
+        .control-disabled {
+            cursor: default;
+        }
+        .control-disabled input::-webkit-input-placeholder, .control-disabled textarea::-webkit-input-placeholder {
+            display: none;
+        }
+        .controls-Input input, .controls-Input textarea {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+        }
+        .controls-Input__placeholder {
+            display: none;
+            position: absolute;
+            line-height: 20px;
+            z-index: 0;
+            top: 3px;
+            left: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: calc(100% - 4px);
+            color: #ccc;
+        }
+
+    </style>
+</head>
+<body>
+<div data-component="App" name="DemoApp">
+    <div class="header">Демо страница компонентов</div>
+    <section class="buttons">
+        <div class="section-header">Кнопки</div>
+        <component data-component="Button" name="BaseButton" caption="Кнопка" className="baseButton"></component>
+    </section>
+    <component data-component="Button" name="ActivateInputs" caption="Собрать компоненты"
+               className="activateButton"></component>
+    <component data-component="Button" name="toggleInputs" caption="Деактивировать компоненты" enabled="false"
+               className="toggleButton"></component>
+    <br>
+    <!--<section class="tables">-->
+    <!--<div class="section-header">-->
+    <!--<component data-component="TableView" name="TableView">Табличные представления</component>-->
+    <!--</div>-->
+    <!--</section>-->
+
+    <!--<section class="dropdown">-->
+    <!--<div class="section-header">Выпадающий список</div>-->
+    <!--<component data-component="DropdownList" name="Dropdown"></component>-->
+    <!--</section>-->
+    <!--<section class="progressbar">-->
+    <!--<div class="section-header">Полоса прогресса</div>-->
+    <!--<component data-component="ProgressBar" name="ProgressBar"></component>-->
+    <!--</section>-->
+</div>
+<section class="input">
+    <div class="section-header">Поля ввода</div>
+
+    <div class="section-article">Поле ввода текста</div>
+    <component data-component="Input" type="Text" name="TextBox" placeholder="С плэйсхолдером">Поле</component>
+    <div class="section-article">Поле ввода пароля</div>
+    <component data-component="Input" type="Password" name="PasswordBox" value="Без плейсхолдера">Поле</component>
+    <div class="section-article">Большая текстовая зона</div>
+    <component data-component="Input" type="Area" name="TextArea" value="123213213" placeholder="Поле ввода">Поле</component>
+    <div class="section-article">Поле ввода числа</div>
+    <component data-component="NumberBox" type="Text" name="NumberBox">Поле</component>
+</section>
+<script src="../src/js/Controls.js"></script>
+<script src="../src/js/Init.js"></script>
+</body>
+</html>

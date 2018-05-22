@@ -80,12 +80,17 @@
     text-align: center;
 }
 
+.app-recipes {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 12px;
+}
+
 .app-recipes-block {
-    width: calc(25% - 28px);
-    display: inline-block;
-    margin: 0 12px 8px 12px;
-    transition-duration: .6s;
+    width: 25%;
+    padding: 8px 12px 8px 12px;
     text-align: center;
+    position: relative;
     font-size: 20px;
 }
 
@@ -95,6 +100,67 @@
     border: 2px solid #cccccc;
     border-radius: 15px;
     margin-bottom: 6px;
+}
+
+.app-recipes-block:hover:not(.selected) {
+    border: 2px solid #ff7c19;
+    border-radius: 15px;
+    padding: 6px 10px 6px 10px;
+    margin: -155px 0 0 0;
+    position: relative;
+    top: 155px;
+    z-index: 2;
+    background: white;
+}
+
+.app-recipe-start {
+    margin: 8px auto 0 auto;
+    font-size: 20px;
+    display: none;
+}
+
+.app-recipes-block:hover:not(.selected) .app-recipe-caption {
+    font-weight: bold;
+}
+
+.app-recipes-block:hover .app-recipe-ingridients,
+.app-recipes-block:hover .app-recipe-ingr-header,
+.app-recipes-block.selected .app-recipe-ingridients,
+.app-recipes-block.selected .app-recipe-ingr-header,
+.app-recipes-block.selected .app-recipe-start,
+.app-recipes-block:hover:not(.selected) .app-recipe-exp,
+.app-recipes-block:hover:not(.selected) .app-recipe-start {
+    display: block;
+}
+
+.app-recipes.recipe-selected {
+    border-bottom: 1px solid #cccccc;
+}
+
+.app-recipe-ingr-header {
+    display: none;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+    margin-top: 8px;
+}
+
+.app-recipe-ingridients {
+    list-style: none;
+    text-align: left;
+    padding-left: 20px;
+    margin-top: 4px;
+    display: none;
+}
+
+.app-recipe-ingridients li:before {
+    content: '-';
+    margin-right: 4px;
+}
+
+.app-recipe-exp {
+    text-align: center;
+    display: none;
 }
 
 .app-recipe-caption {
@@ -178,7 +244,7 @@
     display: none;
 }
 
-.app-recipes.recipe-selected .app-startButton {
+.app-header.recipe-selected + .app-recipes + .app-startButton {
     display: block;
 }
 
@@ -208,6 +274,21 @@
     .app-recipe-caption {
         font-size: 16px;
     }
+    .app-recipe-ingr-header {
+        font-size: 16px;
+    }
+    .app-recipe-ingridients {
+        padding-left: 8px;
+    }
+    .app-recipe-ingridients li {
+        font-size: 15px;
+    }
+    .app-recipe-start {
+        font-size: 16px;
+    }
+    .app-recipe-exp {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 530px) {
@@ -216,3 +297,9 @@
     }
 }
 
+.recipe-done:after {
+    content: "✔";
+    color: green;
+    font-size: 20px;
+    margin-left: 4px;
+}

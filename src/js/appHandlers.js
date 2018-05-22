@@ -5,7 +5,7 @@ var appWindow = document.querySelector('.appWindow'),
     curGame = null;
 
 for (var key in components) {
-    if (components[key].getMarkup().getControlType() === 'Button' && components[key].getMarkup().classList.contains('app-recipe')) {
+    if (components[key].getMarkup().getControlType() === 'Button' && components[key].getMarkup().classList.contains('app-recipe-start')) {
         components[key].setFunc(function () {
             var mode = components.recipeHeader.getMarkup().classList.contains('recipe-selected') ? 'offMode' : 'onMode';
             switch (mode) {
@@ -13,6 +13,7 @@ for (var key in components) {
                     components.recipeHeader.setCaption('Рецепты 1 уровня');
                     components.recipeHeader.getMarkup().classList.remove('recipe-selected');
                     recipeWindow.classList.remove('recipe-selected');
+                    this.control.setCaption('Выбрать');
                     this.parentNode.classList.remove('selected');
                     break;
                 case 'onMode':
@@ -21,6 +22,7 @@ for (var key in components) {
                     components.recipeHeader.setCaption(`Выбрано блюдо: ${recipeName}, за него вы получите ${exp} опыта`);
                     components.recipeHeader.getMarkup().classList.add('recipe-selected');
                     this.parentNode.classList.add('selected');
+                    this.control.setCaption('Обратно к рецептам');
                     recipeWindow.classList.add('recipe-selected');
                     curRecipe = {
                         markup: this,

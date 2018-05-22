@@ -210,12 +210,11 @@ input:focus {
 }
 
 .header-hint {
-    display: none;
     padding: 8px;
     background: white;
     border: 3px solid wheat;
     border-radius: 6px;
-    max-width: 150px;
+    max-width: 350px;
     position: absolute;
     left: 330px;
     z-index: 1;
