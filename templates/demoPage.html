@@ -93,7 +93,18 @@
             max-width: calc(100% - 4px);
             color: #ccc;
         }
-
+        .controls-TableView {
+            border-spacing: 0;
+            padding:0;
+            border-collapse: collapse;
+        }
+        .controls-TableView__td {
+            padding: 3px 6px;
+            border: 1px solid black;
+        }
+        .tableviewtest {
+            margin-top: 24px;
+        }
     </style>
 </head>
 <body>
@@ -107,6 +118,10 @@
                className="activateButton"></component>
     <component data-component="Button" name="toggleInputs" caption="Деактивировать компоненты" enabled="false"
                className="toggleButton"></component>
+    <component data-component="ListView" name="ListViewExample"></component>
+    <!--Зададим в разметке компонент TableView-->
+    <component data-component="TableView" name="TableViewExample" className="tableviewtest"></component>
+    <component data-component="Input" name="inputTest"></component>
     <br>
     <!--<section class="tables">-->
     <!--<div class="section-header">-->
@@ -135,6 +150,7 @@
     <div class="section-article">Поле ввода числа</div>
     <component data-component="NumberBox" type="Text" name="NumberBox">Поле</component>
 </section>
+
 <script src="../src/js/Controls.js"></script>
 <script src="../src/js/Init.js"></script>
 </body>

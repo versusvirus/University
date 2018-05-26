@@ -19,7 +19,25 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             this.control.setCaption('Деактивировать компоненты');
         }
-    })
+    });
+
+    //Сохраним в переменную наш компонент и создадим тестовые данные
+    let tableView = app.getChildControlByName('TableViewExample'),
+        arr = [{
+            name: 'Иван', surname: 'Иванов', grade: '4'
+        }, {
+            name: 'Андрей', surname: 'Андреев', grade: '5'
+        }];
+
+    //Зададим шаблон для отрисовки item
+    tableView.setItemTemplate(function (item) {
+        return `<td class="controls-TableView__td">${item.name}</td>
+                <td class="controls-TableView__td">${item.surname}</td>
+                <td class="controls-TableView__td">${item.grade}</td>`;
+    });
+
+    //Проставим items
+    tableView.setItems(arr);
 });
 
 

@@ -158,7 +158,7 @@ class Button extends ButtonBase {
 
     _prepareMarkup(opts) {
         return `<button data-component="Button"
-                        class="controls-Button ${Control.getOption(opts.className)}"
+                        class="controls-Button ${Control.getOption(opts.classname)}"
                         data-name="${Control.getOption(opts.name)}"/>
                             ${Control.getOption(opts.caption)}
                 </button>`;
@@ -206,8 +206,9 @@ class InputBase extends Control {
         super._buildMarkup(opts);
         this.inputControl = this.getContainer().firstChild;
     }
+
     _prepareMarkup(opts) {
-        let outPutMarkup = `<div class="controls-Input controls-Input${opts.type} ${Control.getOption(opts.className)}" data-component="Input${opts.type}" data-name="${Control.getOption(opts.name)}">`;
+        let outPutMarkup = `<div class="controls-Input controls-Input${opts.type} ${Control.getOption(opts.classname)}" data-component="Input${opts.type}" data-name="${Control.getOption(opts.name)}">`;
         switch (opts.type) {
             case 'Area':
                 outPutMarkup = `${outPutMarkup}<textarea/></textarea>
@@ -233,27 +234,87 @@ class NumberBox extends InputBase {
         this.inputControl.addEventListener('keyup', this._keyUpHandler);
         this.inputControl.addEventListener('focusout', this._focusOutHandler);
     }
+
     _keyDownHandler(event) {
-        if(event.key === 'Shift') {
+        if (event.key === 'Shift') {
             this._SHIFT_PRESS = true;
         }
-        if(event.key === 'a' && event.ctrlKey) {
+        if (event.key === 'a' && event.ctrlKey) {
             event.target.selectionStart = 0;
             event.target.selectionEnd = event.target.value.length;
             return;
         }
-        if(event.key === 'Tab') {
+        if (event.key === 'Tab') {
             return;
         }
         if (!((!(this._SHIFT_PRESS) && (event.keyCode >= 48 && event.keyCode <= 57)) || event.key === 'Delete' || event.key === 'Backspace')) {
             event.preventDefault();
         }
     }
+
     _keyUpHandler(event) {
         this._SHIFT_PRESS = false;
     }
+
     _focusOutHandler(event) {
         this._SHIFT_PRESS = false;
+    }
+}
+
+class ListView extends Control {
+    constructor(node) {
+        super(node);
+    }
+
+    setItemTemplate(itemTplFn) {
+        this._itemTplFn = itemTplFn;
+    }
+
+    getItems() {
+        return this._options.items;
+    }
+
+    setItems(items) {
+        this.setOption('items', items);
+        this.redraw();
+    }
+
+    _prepareMarkup(opts) {
+        let markupString = `<div class="controls-ListView ${Control.getOption(opts.classname)}" data-component="ListView" data-name="${Control.getOption(opts.name)}">`,
+            self = this;
+
+        if (this.getItems()) {
+            if (this._itemTplFn) {
+                this.getItems().forEach(function (item) {
+                    markupString = `${markupString}${self._itemTplFn(item)}`;
+                });
+            }
+        }
+        markupString = `${markupString}</div>`;
+
+        return markupString;
+    }
+}
+
+class TableView extends ListView {
+    constructor(node) {
+        super(node);
+    }
+
+    _prepareMarkup(opts) {
+        let markupString = `<table class="controls-TableView ${Control.getOption(opts.classname)}" data-component="TableView" data-name="${Control.getOption(opts.name)}">`,
+            self = this;
+
+        if (self.getItems()) {
+            if(self._itemTplFn) {
+                self.getItems().forEach(function (item) {
+                    markupString += `<tr class="controls-TableView__tr">${self._itemTplFn(item)}</tr>`;
+                });
+            }
+        }
+
+        markupString+= '</table>';
+        return markupString;
     }
 }
 
@@ -279,17 +340,19 @@ class App extends Control {
 const CONTROLS_NAMES = {
     Input: InputBase,
     Button: Button,
-    NumberBox: NumberBox
+    NumberBox: NumberBox,
+    ListView: ListView,
+    TableView: TableView
 };
 
-HTMLElement.prototype.toggleClass = function (className, state) {
-    if(state === undefined) {
-        this.classList.toggle(className);
+HTMLElement.prototype.toggleClass = function (classname, state) {
+    if (state === undefined) {
+        this.classList.toggle(classname);
     } else {
         if (state) {
-            this.classList.add(className);
+            this.classList.add(classname);
         } else {
-            this.classList.remove(className);
+            this.classList.remove(classname);
         }
     }
 };
@@ -301,3 +364,11 @@ HTMLElement.prototype.setEnabled = function (state) {
         this.setAttribute('disabled', true);
     }
 };
+
+Array.prototype.at = function (index) {
+    if (this[index]) {
+        return this[index];
+    } else {
+        console.error(`Элемента с индексом ${index} не существует`);
+    }
+}
