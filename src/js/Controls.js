@@ -69,12 +69,14 @@ class Control {
         }
     }
 
-    static reviveNodeControls(node) {
-        let controls = node.querySelectorAll('[data-component]');
+    static reviveChildControls(node) {
+        let controls = node.querySelectorAll('[name]'), childs = {};
 
         controls.forEach(function (controlNode) {
-            new CONTROLS_NAMES[controlNode.getAttribute('data-component')](controlNode);
+            childs[controlNode.getAttribute('name')] = controlNode.hasAttribute('data-component') ? new CONTROLS_NAMES[controlNode.getAttribute('data-component')](controlNode) : controlNode;
         });
+
+        return childs;
     }
 
     static getNodeOptions(node) {
@@ -119,27 +121,21 @@ class Control {
         pNode.replaceChild(nNode, this._container);
         this._container = nNode;
         this._container.control = this;
+        if (this._container.querySelector('[data-component]')) {
+            this._children = Control.reviveChildControls(this._container);
+        }
     }
 }
 
 class ButtonBase extends Control {
     constructor(node) {
         super(node);
-        this._clickEvent = new Event('activated', {bubbles: true});
-    }
-
-    _changeEvent(node) {
-        node.addEventListener('click', function (event) {
-            event.preventDefault();
-            node.dispatchEvent(this.control._clickEvent);
-        })
     }
 }
 
 class Button extends ButtonBase {
     constructor(node) {
         super(node);
-        this._changeEvent(this.getContainer());
     }
 
     setCaption(newCaption) {
@@ -321,19 +317,31 @@ class TableView extends ListView {
 class App extends Control {
     constructor(node) {
         super(node);
-        this._reviveComponents();
     }
 
     _prepareMarkup(opts) {
         return `<div data-component="App" data-name=${Control.getOption(opts.name)}>${this.getContainer().innerHTML}</div>`;
     }
+}
 
-    _reviveComponents() {
-        let components = this.getContainer().querySelectorAll('[data-component]');
-
-        components.forEach(function (control) {
-            new CONTROLS_NAMES[control.getAttribute('data-component')](control);
+class SimpleContainerControl extends Control{
+    constructor(node) {
+        super(node);
+        let arr = [5,6,7,8,9,0],
+            self = this;
+        this._children.MyTableView.setItemTemplate(function (item) {
+           return `<td>${item}</td>`;
         });
+        this._children.MyButton.getContainer().addEventListener('click', function () {
+           self._children.MyTableView.setItems(arr);
+        });
+    }
+
+    _prepareMarkup(opts) {
+        return `<div data-component="SimpleContainerControl" ${Control.getOption(opts.name, true, 'data-name')}>
+                    <component data-component="Button" name="MyButton" caption="нажми меня"></component>
+                    <component data-component="TableView" name="MyTableView"></component>
+                </div>`;
     }
 }
 
@@ -342,7 +350,8 @@ const CONTROLS_NAMES = {
     Button: Button,
     NumberBox: NumberBox,
     ListView: ListView,
-    TableView: TableView
+    TableView: TableView,
+    SimpleContainerControl: SimpleContainerControl
 };
 
 HTMLElement.prototype.toggleClass = function (classname, state) {
