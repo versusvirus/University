@@ -1,3 +1,5 @@
+/*Библиотека Controls v1.0*/
+
 class Control {
     constructor(node) {
         this._options = Control.getNodeOptions(node);
@@ -324,34 +326,13 @@ class App extends Control {
     }
 }
 
-class SimpleContainerControl extends Control{
-    constructor(node) {
-        super(node);
-        let arr = [5,6,7,8,9,0],
-            self = this;
-        this._children.MyTableView.setItemTemplate(function (item) {
-           return `<td>${item}</td>`;
-        });
-        this._children.MyButton.getContainer().addEventListener('click', function () {
-           self._children.MyTableView.setItems(arr);
-        });
-    }
-
-    _prepareMarkup(opts) {
-        return `<div data-component="SimpleContainerControl" ${Control.getOption(opts.name, true, 'data-name')}>
-                    <component data-component="Button" name="MyButton" caption="нажми меня"></component>
-                    <component data-component="TableView" name="MyTableView"></component>
-                </div>`;
-    }
-}
-
 const CONTROLS_NAMES = {
     Input: InputBase,
     Button: Button,
     NumberBox: NumberBox,
     ListView: ListView,
-    TableView: TableView,
-    SimpleContainerControl: SimpleContainerControl
+    TableView: TableView
+
 };
 
 HTMLElement.prototype.toggleClass = function (classname, state) {

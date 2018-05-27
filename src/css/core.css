@@ -1,0 +1,42 @@
+* {
+  outline: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: "Century Gothic";
+}
+.controls-Input {
+  position: relative;
+  border: 1px solid black;
+  display: inline-block;
+}
+.controls-Input.controls-Disabled {
+  border: 1px solid transparent;
+  border-bottom: 1px solid #d6d6d6;
+}
+.controls-Input__placeholder {
+  position: absolute;
+  display: none;
+  top: 2px;
+  left: 4px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #cccccc;
+  z-index: 0;
+}
+.controls-Input input,
+.controls-Input textarea {
+  border: none;
+  padding: 2px 0 2px 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: transparent;
+  z-index: 1;
+}
+.controls-Input input[disabled],
+.controls-Input textarea[disabled] {
+  color: black;
+}
