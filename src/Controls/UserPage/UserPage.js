@@ -8,16 +8,25 @@ class UserPage extends Control {
                 ${this.getContainer().innerHTML}</div>`
     }
 
-    _init() {
+    init() {
         let self = this;
-        super._init();
-        this._children.ToggleButton.getContainer().addEventListener('click', function () {
+        super.init();
+        this._children.ToggleButton.subscribe('activated', function () {
             self.setEnabled(!self.isEnabled());
             if (self._children.ToggleButton.getCaption() === 'Изменить') {
                 self._children.ToggleButton.setCaption('Сохранить');
             } else {
                 self._children.ToggleButton.setCaption('Изменить');
             }
+        });
+        this._children.ToggleButton.subscribe('destroy', function () {
+            console.log(this);
+        });
+        this._children.NameTextBox.subscribe('valueChanged', function (event, value) {
+            self._children.BlackBox.innerHTML = value;
+        });
+        this._children.MyListView.subscribe('itemClick', function (event, itemValue) {
+            console.log(itemValue);
         });
     }
 

@@ -1,11 +1,41 @@
+class SyntheticEvent {
+    constructor(eventType, eventCaller, nativeEvent) {
+        this.eventType = eventType;
+        this.eventCaller = eventCaller;
+        nativeEvent && (this.nativeEvent = nativeEvent);
+    }
+}
+
 const Mixins = {
+    NotifyControlMixin: {
+        _notify: function (eventType, args, nativeEvent) {
+            let event = new SyntheticEvent(eventType, this, nativeEvent),
+                parentControl = this._getParentControl(),
+                finalArgs = Core.coreConcat([event], args),
+                fn = parentControl && parentControl._subscriptions && parentControl._subscriptions[this.getName()] && parentControl._subscriptions[this.getName()][eventType];
+            if (fn) {
+                fn.apply(this, finalArgs);
+            }
+        },
+        subscribe: function (eventType, handler) {
+            let parentControl = this._getParentControl();
+            if (!parentControl._subscriptions) {
+                parentControl._subscriptions = {};
+            }
+            if (!parentControl._subscriptions[this.getName()]) {
+                parentControl._subscriptions[this.getName()] = {};
+            }
+            parentControl._subscriptions[this.getName()][eventType] = handler;
+        }
+    },
     DOMControlMixin: {
         getContainer: function () {
             return this._container;
         },
         redraw: function () {
             this._createMarkup();
-            this._init();
+            this.initChildControls();
+            this.init();
         }
     },
     EnabledControlMixin: {
@@ -48,6 +78,16 @@ const Mixins = {
         },
         setItemTemplate: function (itemTplFn) {
             this._options.itemTplFn = itemTplFn;
+        },
+        initItemsEvents: function () {
+            let items = this._children.itemsContainer.childNodes,
+                self = this;
+
+            items.forEach(function (item, index) {
+                item.addEventListener('click', function () {
+                    self._notify('itemClick', [self._options.items[index]]);
+                })
+            })
         }
     }
 };
@@ -86,7 +126,11 @@ class Core {
 
     }
 
-    static InitApp() {
+    /**
+     * Метод initApp
+     * Выполняет инициализацию всего приложения
+     */
+    static initApp() {
         var myApp = document.querySelector('[data-component="App"]');
         myApp = new App(myApp, {});
     }
@@ -136,6 +180,14 @@ class Parser {
         return newMarkup;
     }
 
+    /**
+     * Метод createAttr
+     * Принимает на вход данные о создаваем атрибуте, возвращает атрибут в формате attrName="attrValue ?attrDefault"
+     * @param attrName - имя аттрибута
+     * @param attrValue - значение аттрибута
+     * @param attrDefault - значение по умолчанию
+     * @returns {string}
+     */
     static createAttr(attrName, attrValue = '', attrDefault) {
         return !attrDefault ? `${attrName}="${attrValue}"` : `${attrName}="${attrDefault} ${attrValue}"`;
     }
@@ -187,6 +239,17 @@ class AbstractControl {
         return childs;
     }
 
+    static destroyChildrens(control) {
+        let childrens = control._children;
+
+        for (let children in childrens) {
+            if (childrens[children]._container) {
+                childrens[children].destroy();
+            }
+        }
+    }
+
+
     static haveChildrens(control) {
         return !!control.getContainer().querySelector('[name]');
     }
@@ -195,10 +258,11 @@ class AbstractControl {
 
 class Control {
     constructor(node, additionalOptions, additionalMixin) {
-        Mixin.mixes(this, Core.coreConcat([Mixins.DOMControlMixin, Mixins.EnabledControlMixin], additionalMixin));
+        Mixin.mixes(this, Core.coreConcat([Mixins.DOMControlMixin, Mixins.EnabledControlMixin, Mixins.NotifyControlMixin], additionalMixin));
         this._modifyOptions(node, additionalOptions);
         this._createMarkup();
-        this._init();
+        this.initChildControls();
+        this.init();
     }
 
     /**
@@ -227,6 +291,9 @@ class Control {
     _createMarkup() {
         this._container = Parser.appendControlToDOM(this._container, Parser.getMarkup(this._prepareMarkup(this._options)));
         Parser.toggleClass(this._container, 'controls-Disabled', !this._options.enabled);
+    }
+
+    initChildControls() {
         if (AbstractControl.haveChildrens(this)) {
             this._children = AbstractControl.reviveChildrens(this) || null;
         }
@@ -237,8 +304,36 @@ class Control {
      * Инициализация компонента, на момент его выполнения компонент уже есть в DOM, все его дочерние компоненты также построены
      * @private
      */
-    _init() {
+    init() {
+        this.setEnabled(this._options.enabled);
         this._container.control = this;
+        let self = this;
+        this._container.addEventListener('DOMNodeRemoved', function (event) {
+            if(event.target === self._container) {
+                self.destroy();
+            }
+        });
+    }
+
+    destroy() {
+        this._destroy && this._destroy();
+        AbstractControl.destroyChildrens(this);
+        console.log(this);
+        this._notify('destroy');
+        delete this;
+    }
+
+    _getParentControl() {
+        let parentNode = this._container.parentNode;
+
+        while(!parentNode.hasAttribute('data-component') && parentNode.nodeName !== 'BODY') {
+            parentNode = parentNode.parentNode;
+        }
+        return parentNode.control;
+    }
+
+    getName() {
+        return this._options.name;
     }
 
     /**
@@ -282,15 +377,15 @@ class BaseInput extends Control {
         return this._options.value;
     }
 
-    _createMarkup() {
-        super._createMarkup();
+    initChildControls() {
+        super.initChildControls();
         this._inputControl = this._children.inputControl;
         this._placeholder = this._children.placeholder;
         this.setValue(this.getValue());
     }
 
-    _init() {
-        super._init();
+    init() {
+        super.init();
         this._inputControl.addEventListener('input', this._inputHandler.bind(this));
         this._inputControl.addEventListener('focusin', this._focusInHandler.bind(this));
         this._inputControl.addEventListener('focusout', this._focusOutHandler.bind(this));
@@ -308,12 +403,15 @@ class BaseInput extends Control {
 
     _inputHandler(event) {
         this.setValue(event.target.value);
+        this._notify('valueChanged', [this.getValue()], event);
     }
 
     _focusInHandler(event) {
+        this._notify('focusIn', [], event);
     }
 
     _focusOutHandler(event) {
+        this._notify('focusOut', [], event);
     }
 
     _checkPlaceHolder(value) {
@@ -339,7 +437,7 @@ class TextBox extends BaseInput {
         return `<div ${Parser.createAttr('data-component', 'TextBox')}
                      ${Parser.createAttr('name', options.name)}
                      ${Parser.createAttr('class', options.className, 'controls-Input controls-TextBox')}>
-                    <input ${Parser.createAttr('type', 'text')} ${Parser.createAttr('name', 'inputControl')}>
+                    <input ${Parser.createAttr('type', 'text')} ${Parser.createAttr('name', 'inputControl')} ${Parser.createAttr('value', options.value)}>
                     <div ${Parser.createAttr('class', 'controls-Input__placeholder')} ${Parser.createAttr('name', 'placeholder')}>${Parser.createText(options.placeholder)}</div>
                 </div>`;
     }
@@ -370,17 +468,23 @@ class ListView extends Control {
         super(node, additionalOptions, [Mixins.ItemsControlMixin]);
     }
 
+    init() {
+        super.init();
+        this.initItemsEvents();
+    }
+
     _prepareMarkup(options) {
         let markupString = `<div ${Parser.createAttr('data-component', 'ListView')} 
                                  ${Parser.createAttr('name', options.name)}
-                                 ${Parser.createAttr('class', options.className, 'controls-ListView')}>`,
+                                 ${Parser.createAttr('class', options.className, 'controls-ListView')}>
+                            <div ${Parser.createAttr('name', 'itemsContainer')} ${Parser.createAttr('class', 'controls-ListView__itemsContainer')}>`,
             self = this;
         if (this._options.itemTplFn) {
             this.getItems().forEach(function (item) {
                 markupString += self._options.itemTplFn(item);
             });
         }
-        markupString += '</div>';
+        markupString += '</div></div>';
 
         return markupString;
     }
@@ -397,6 +501,14 @@ class Button extends Control {
                         ${Parser.createAttr('class', options.className, 'controls-Button')}>
                         ${Parser.createText(options.caption)}
                 </button>`
+    }
+
+    init() {
+        super.init();
+        var self = this;
+        this._container.addEventListener('click', function (event) {
+            self._notify('activated', [], event)
+        })
     }
 
     _setEnabled(state) {
