@@ -11,7 +11,7 @@
     <div data-component="UserPage" name="CustomUserPage" enabled="false">
         <div class="header">
             <div class="header-caption">Страница пользователя</div>
-            <component data-component="Button" name="ToggleButton" className="controls-LinkButton controls-gray" caption="Изменить"></component>
+            <component data-component="Button" name="ToggleButton" className="controls-LinkButton controls-gray" caption="Сохранить"></component>
         </div>
         <div class="content">
             <img src="https://pp.userapi.com/c631327/v631327566/3ddab/DGf4UX4IdLs.jpg" alt="" class="content-userImage">
@@ -28,12 +28,14 @@
                     <span class="content-info-block-label">Возраст</span>
                     <component data-component="NumberBox" name="AgeTextBox" placeholder="Введите возраст" value="20" enabled="false"></component>
                 </div>
+                <component data-component="ListView" name="MyListView"></component>
+                <div name="BlackBox"></div>
             </div>
         </div>
     </div>
 </div>
 <script src="../src/Controls/Controls.js"></script>
 <script src="../src/Controls/UserPage/UserPage.js"></script>
-<script>Core.InitApp();</script>
+<script>Core.initApp()</script>
 </body>
 </html>

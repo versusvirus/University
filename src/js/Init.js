@@ -1,7 +1,6 @@
-var app;
-document.addEventListener('DOMContentLoaded', function () {
-    let state = false;
-    app = new App(document.querySelector('[data-component="App"]'));
-});
-
-
+define(['Controls/App',
+        'css!Core/css/normalize.css'],
+    function (Application) {
+        window.App = new Application(document.getElementById('app'));
+    }
+);

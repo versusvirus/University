@@ -1,0 +1,14 @@
+@font-face {
+  src: url(../../../fonts/GOTHIC.TTF);
+  font-family: 'Gothic';
+}
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: 'Gothic';
+}
+body {
+  font-size: 14px;
+}
+/*# sourceMappingURL=normalize.css.map */
