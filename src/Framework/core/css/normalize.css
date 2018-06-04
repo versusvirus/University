@@ -7,8 +7,8 @@
   margin: 0;
   outline: none;
   font-family: 'Gothic';
+  box-sizing: border-box;
 }
 body {
   font-size: 14px;
 }
-/*# sourceMappingURL=normalize.css.map */
