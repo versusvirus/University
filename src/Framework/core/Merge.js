@@ -11,7 +11,7 @@ define([], function () {
             }
         }
         return obj;
-    };
+    }
 
     return coreMerge;
 });

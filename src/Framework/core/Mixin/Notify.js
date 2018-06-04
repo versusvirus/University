@@ -1,8 +1,5 @@
-define(['Core/coreConcat', 'Core/coreSyntheticEvent'], function (coreConcat, SyntheticEvent) {
-    class Notify {
-        constructor() {
-            this._subscriptions = {};
-        }
+define(['Core/Concat', 'Core/Event/Synthetic'], function (coreConcat, SyntheticEvent) {
+    return {
         _notify(eventType, args, nativeEvent) {
             let event = new SyntheticEvent(eventType, this, nativeEvent),
                 parentControl = this._getParent(),
@@ -11,7 +8,7 @@ define(['Core/coreConcat', 'Core/coreSyntheticEvent'], function (coreConcat, Syn
             if (fn) {
                 fn.apply(this, finalArgs);
             }
-        }
+        },
 
         subscribe(eventType, handler) {
             let parentControl = this._getParent();
@@ -27,7 +24,5 @@ define(['Core/coreConcat', 'Core/coreSyntheticEvent'], function (coreConcat, Syn
             }
             parentControl._subscriptions[this.getName()][eventType] = handler;
         }
-    }
-
-    return Notify;
+    };
 });

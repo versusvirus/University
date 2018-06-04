@@ -1,11 +1,18 @@
-define(['Core/Abstract', 'Core/coreMerge', 'Core/coreDomReplace', 'Core/coreDomHelper'], function (Abstract, coreMerge, domReplace, domHelper) {
+define(['Core/Abstract', 'Core/Merge', 'Core/Dom/Replace', 'Core/Dom/Helper'], function (Abstract, coreMerge, domReplace, domHelper) {
     class Control extends Abstract {
-        constructor(node, options, template) {
-            super();
+        constructor(node, options, template, mixins) {
+            super(mixins);
+            this.defineStates();
             this._modifyOptions(options, node);
             this._constructor(node, template);
             this._initChildControls();
             this.init();
+        }
+
+        /**
+         * Хук для объявления изначальных состояний
+         */
+        defineStates() {
         }
 
         _modifyOptions(options, node) {
