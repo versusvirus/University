@@ -1,0 +1,28 @@
+.controls-Input {
+    padding: 3px 4px;
+    border: 1px solid black;
+    position: relative;
+    display: inline-block;
+}
+
+.controls-Input [name="input"] {
+    border: none;
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    resize: none;
+}
+
+.controls-Input .controls-Input__placeholder {
+    position: absolute;
+    user-select: none;
+    top: 3px;
+    left: 4px;
+    max-width: calc(100% - 8px);
+    overflow: hidden;
+    z-index: 0;
+    color: lightgray;
+    display: none;
+}

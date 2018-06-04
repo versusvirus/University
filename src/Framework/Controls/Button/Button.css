@@ -1,0 +1,11 @@
+.controls-Button {
+    border: 2px solid #426391;
+    padding: 4px 8px;
+    background-color: white;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.controls-Button:hover {
+    border-color: #4F87C0;
+}

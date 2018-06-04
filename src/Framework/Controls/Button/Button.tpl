@@ -1,0 +1,1 @@
+<button data-component="{{data-component}}" name="{{name}}" class="controls-Button {{className}}">{{caption}}</button>
