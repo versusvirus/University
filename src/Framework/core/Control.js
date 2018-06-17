@@ -1,10 +1,10 @@
 define(['Core/Abstract', 'Core/Merge', 'Core/Dom/Replace', 'Core/Dom/Helper'], function (Abstract, coreMerge, domReplace, domHelper) {
     class Control extends Abstract {
-        constructor(node, options, template, mixins) {
+        constructor(node, options, mixins) {
             super(mixins);
             this.defineStates();
             this._modifyOptions(options, node);
-            this._constructor(node, template);
+            this._constructor(node);
             this._initChildControls();
             this.init();
         }
@@ -22,8 +22,8 @@ define(['Core/Abstract', 'Core/Merge', 'Core/Dom/Replace', 'Core/Dom/Helper'], f
             this._options = coreMerge(this._options, options);
         }
 
-        _constructor(node, template) {
-            this._container = domReplace.replace(node, Parser.render(template, this._options), this._options);
+        _constructor(node) {
+            this._container = domReplace.replace(node, Parser.render(this.constructor._template, this._options), this._options);
             this._container.control = this;
         }
 
@@ -32,10 +32,9 @@ define(['Core/Abstract', 'Core/Merge', 'Core/Dom/Replace', 'Core/Dom/Helper'], f
                 childrens = {};
             childNodes.forEach(function (children) {
                 if (children.constructor.name === 'HTMLUnknownElement') {
-                    let controlType = domHelper.getControlName(children.tagName);
-                    require([controlType], function (Constructor) {
-                        childrens[children.getName()] = new Constructor(children, {'data-component': controlType});
-                    })
+                    let controlType = domHelper.getControlName(children.tagName),
+                        Constructor = require(controlType);
+                    childrens[children.getName()] = new Constructor(children, {'data-component': controlType});
                 } else {
                     childrens[children.getName()] = children;
                 }
@@ -69,7 +68,7 @@ define(['Core/Abstract', 'Core/Merge', 'Core/Dom/Replace', 'Core/Dom/Helper'], f
         _getParent() {
             let parentNode = this._container.parentNode;
 
-            if(parentNode.tagName !== 'BODY' && !parentNode.control) {
+            if (parentNode.tagName !== 'BODY' && !parentNode.control) {
                 parentNode = parentNode.parentNode;
             }
 

@@ -1,6 +1,9 @@
 define(['../lib/template',
-        'css!Core/css/core.css'],
-    function (Parser) {
+        'css!Core/css/core.css',
+        './modules',
+        'Core/template/Parser',
+        'Core/template/Listener'],
+    function (Parser, module, allModules, templateEngine, listener) {
         HTMLElement.prototype.getName = function () {
           return this.getAttribute('name');
         };
@@ -14,10 +17,21 @@ define(['../lib/template',
         HTMLElement.prototype.hide = function () {
             this.style.display = 'none';
         };
+        let a = new templateEngine(listener, {
+            xmlMode: true,
+            recognizeSelfClosing: true,
+            failOnInnerCurlyBrace: true,
+            generateTagErrors: true
+        });
+
+        debugger;
         window.Parser = Parser;
         let app = document.getElementById('app');
-        require([app.getAttribute('data-component')], function (AppConstructor) {
-            window.Application = new AppConstructor(app, {});
+        require(allModules , function (Application) {
+            setTimeout(function () {
+                a.write(Application._template);
+
+            }, 0)
         })
     }
 );

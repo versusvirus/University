@@ -6,7 +6,7 @@ define([
     function (Control, tpl) {
         class Button extends Control {
             constructor(node, options) {
-                super(node, options, tpl);
+                super(node, options);
             }
 
             init() {
@@ -17,6 +17,8 @@ define([
                 });
             }
         }
+
+        Button._template = tpl;
 
         return Button;
     });
